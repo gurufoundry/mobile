@@ -157,10 +157,10 @@ function RenderShape({ el }: { el: ShapeElement }) {
     case 'burst':
       return <polygon points={starPoints(x, y, w / 2, w / 3.5, 8)} {...common} />
     case 'heart': {
-      const s = w / 100
+      const r = Math.min(w, h) / 2
       return (
         <path
-          d={`M${x},${y + 20 * s} C${x},${y - 30 * s} ${x - 50 * s},${y - 50 * s} ${x - 50 * s},${y - 20 * s} C${x - 50 * s},${y - 60 * s} ${x},${y - 40 * s} ${x},${y - 40 * s} C${x},${y - 40 * s} ${x + 50 * s},${y - 60 * s} ${x + 50 * s},${y - 20 * s} C${x + 50 * s},${y - 50 * s} ${x},${y - 30 * s} ${x},${y + 20 * s} Z`}
+          d={`M${x},${y + r * 0.9} C${x - r * 0.5},${y + r * 0.3} ${x - r},${y + r * 0.5} ${x - r},${y - r * 0.25} C${x - r},${y - r * 0.9} ${x},${y - r * 0.9} ${x},${y - r * 0.1} C${x},${y - r * 0.9} ${x + r},${y - r * 0.9} ${x + r},${y - r * 0.25} C${x + r},${y + r * 0.5} ${x + r * 0.5},${y + r * 0.3} ${x},${y + r * 0.9} Z`}
           {...common}
           transform={transform}
         />
