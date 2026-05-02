@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Theme Packs · Sonic Sticker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=JetBrains+Mono:wght@400;500;700&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0E0E10;
+    --paper: #F4F1EA;
+    --paper-2: #EAE5D9;
+    --acid: #D4FF3D;
+    --coral: #FF5A3D;
+    --plum: #2B1B4A;
+    --sky: #6FA8FF;
+    --line: rgba(14,14,16,0.12);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--paper); color: var(--ink);
+    font-family: 'Inter Tight', sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none;
+    opacity: 0.3; mix-blend-mode: multiply; z-index: 100;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  }
+  .container { max-width: 1240px; margin: 0 auto; padding: 56px 32px 100px; }
+
+  .masthead { border-bottom: 2px solid var(--ink); padding-bottom: 24px; margin-bottom: 48px; }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.18em;
+    opacity: 0.65; margin-bottom: 14px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .eyebrow .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--coral); }
+  h1.title {
+    font-family: 'Fraunces', serif; font-weight: 800;
+    font-size: clamp(40px, 7vw, 80px);
+    line-height: 0.95; letter-spacing: -0.03em;
+  }
+  h1.title em { font-style: italic; font-weight: 400; color: var(--coral); }
+  .subtitle { margin-top: 16px; font-size: 18px; max-width: 720px; opacity: 0.78; }
+
+  /* RESEARCH NOTE */
+  .research {
+    background: var(--ink); color: var(--paper);
+    border-radius: 20px; padding: 32px 36px;
+    margin: 32px 0 48px;
+    display: grid; grid-template-columns: auto 1fr; gap: 28px; align-items: center;
+  }
+  @media (max-width: 720px) { .research { grid-template-columns: 1fr; } }
+  .research-icon {
+    font-family: 'Fraunces', serif; font-style: italic;
+    font-size: 80px; color: var(--acid); line-height: 1;
+  }
+  .research-text { font-size: 15px; line-height: 1.55; }
+  .research-text strong { background: var(--coral); padding: 1px 6px; }
+
+  /* SECTION HEADERS */
+  .section { margin-top: 80px; }
+  .section-num {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    letter-spacing: 0.18em; color: var(--coral);
+    margin-bottom: 12px; text-transform: uppercase;
+  }
+  h2.section-title {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: clamp(32px, 4.5vw, 48px); line-height: 1.0;
+    letter-spacing: -0.02em; margin-bottom: 16px;
+  }
+  .section-intro { max-width: 760px; font-size: 16px; opacity: 0.78; margin-bottom: 32px; }
+
+  /* PACK GRID */
+  .packs { display: grid; gap: 20px; grid-template-columns: 1fr 1fr; }
+  @media (max-width: 880px) { .packs { grid-template-columns: 1fr; } }
+
+  .pack {
+    background: var(--paper-2); border: 1.5px solid var(--ink);
+    border-radius: 20px; padding: 28px 28px 24px;
+    position: relative; overflow: hidden;
+  }
+  .pack-header { display: flex; align-items: start; justify-content: space-between; gap: 16px; margin-bottom: 14px; }
+  .pack-num {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 0.18em; opacity: 0.5; padding-top: 6px;
+  }
+  .pack-name {
+    font-family: 'Fraunces', serif; font-weight: 700;
+    font-size: 28px; line-height: 1.05; letter-spacing: -0.01em;
+  }
+  .pack-name em { font-style: italic; font-weight: 400; }
+  .pack-tagline {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    opacity: 0.7; margin-bottom: 20px;
+  }
+
+  /* COLOR STRIP */
+  .color-strip {
+    display: flex; height: 32px; border-radius: 8px;
+    overflow: hidden; border: 1px solid var(--ink);
+    margin-bottom: 18px;
+  }
+  .color-strip span { flex: 1; }
+
+  .pack-desc { font-size: 14.5px; line-height: 1.5; margin-bottom: 18px; }
+
+  /* SAMPLE STICKER PREVIEW */
+  .preview-row {
+    display: flex; gap: 8px; align-items: center;
+    padding: 14px 0 4px; border-top: 1px dashed var(--line);
+  }
+  .preview-sticker {
+    width: 72px; height: 72px; flex-shrink: 0;
+    border: 2px solid var(--ink);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', serif; font-weight: 700;
+    text-align: center; line-height: 1;
+    font-size: 12px;
+    box-shadow: 3px 3px 0 var(--ink);
+  }
+  .preview-meta {
+    flex: 1; font-size: 12px; line-height: 1.4;
+  }
+  .preview-meta strong {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    text-transform: uppercase; letter-spacing: 0.12em; opacity: 0.6;
+    display: block; margin-bottom: 2px;
+  }
+  .preview-meta-text { font-family: 'Fraunces', serif; font-size: 14px; font-weight: 600; }
+
+  .pack-tags {
+    display: flex; flex-wrap: wrap; gap: 4px; margin-top: 14px;
+  }
+  .pack-tag {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    background: var(--ink); color: var(--paper);
+    padding: 3px 7px; border-radius: 3px;
+    text-transform: uppercase; letter-spacing: 0.12em;
+  }
+
+  /* MOTHERS DAY DIVIDER */
+  .mothers-banner {
+    background: linear-gradient(135deg, #F4D5C8, #E8B4D2);
+    border: 2px solid var(--ink);
+    border-radius: 20px;
+    padding: 36px;
+    margin: 80px 0 32px;
+    position: relative;
+  }
+  .mothers-banner::before {
+    content: '✿';
+    position: absolute; top: -16px; left: 36px;
+    background: var(--ink); color: #F4D5C8;
+    width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; border-radius: 50%;
+  }
+  .mothers-banner h2 {
+    font-family: 'Fraunces', serif; font-weight: 700;
+    font-size: 40px; line-height: 1.05; letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+  .mothers-banner h2 em { font-style: italic; font-weight: 400; }
+  .mothers-banner p {
+    font-size: 15px; max-width: 680px; opacity: 0.85;
+  }
+  .mothers-meta {
+    margin-top: 16px; font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.12em;
+  }
+
+  /* RECOMMENDATIONS */
+  .recommend {
+    background: var(--acid); border: 2px solid var(--ink);
+    border-radius: 20px; padding: 36px;
+    margin-top: 56px;
+  }
+  .recommend-tag {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.18em;
+    background: var(--ink); color: var(--acid);
+    padding: 5px 10px; border-radius: 4px;
+    display: inline-block; margin-bottom: 16px;
+  }
+  .recommend h2 {
+    font-family: 'Fraunces', serif; font-weight: 700;
+    font-size: 30px; line-height: 1.1; margin-bottom: 12px;
+  }
+  .recommend p { font-size: 15.5px; line-height: 1.55; margin-bottom: 12px; }
+  .recommend strong { background: var(--ink); color: var(--acid); padding: 1px 6px; }
+
+  .endnote {
+    margin-top: 56px; padding-top: 24px;
+    border-top: 1px solid var(--ink);
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    opacity: 0.65; line-height: 1.6;
+  }
+  .endnote strong { display: block; margin-bottom: 6px; opacity: 1; color: var(--ink); font-family: 'Fraunces', serif; font-size: 16px; font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <header class="masthead">
+    <div class="eyebrow"><span class="dot"></span> Theme Packs · Trend-Researched · v0.1</div>
+    <h1 class="title">Themes that <em>land</em></h1>
+    <p class="subtitle">Eight theme packs grounded in what's actually trending in 2026 — six for kids and teens (the sticker-collecting heart of the market), plus two timed for Mother's Day on May 10. Each pack expands the gallery into a focused mood with its own palette, vibe, and starter messages.</p>
+  </header>
+
+  <!-- RESEARCH NOTE -->
+  <div class="research">
+    <div class="research-icon">i</div>
+    <div class="research-text">
+      <strong>What the research showed.</strong> Sticker culture is having a moment — Japan's Heisei Retro revival has put 70%+ of elementary kids actively into sticker collecting. Meanwhile, Gen Z is rejecting "clean girl minimalism" for <strong>Kidcore</strong>, <strong>Y2K chrome</strong>, and <strong>maximalist self-expression</strong>. Mother's Day 2026 trends point to <strong>Pantone's "Transformative Teal"</strong>, watercolor florals, line-art portraits, and "vibe-based" gifting over generic.
+    </div>
+  </div>
+
+  <!-- KIDS + TEENS SECTION -->
+  <section class="section">
+    <div class="section-num">For kids &amp; teens · 6 packs</div>
+    <h2 class="section-title">Where the energy is right now</h2>
+    <p class="section-intro">Six packs spanning younger kids (Heisei nostalgia, Kidcore) through tweens and teens (Y2K chrome, Coquette, Cottagecore, AI-meme humor). Each was selected from current trend signals across TikTok, Pinterest, Vogue Japan, and the 2026 sticker market.</p>
+
+    <div class="packs">
+
+      <!-- PACK 1: KIDCORE -->
+      <div class="pack">
+        <div class="pack-header">
+          <div>
+            <div class="pack-name">Kidcore<em> Kraft</em></div>
+            <div class="pack-tagline">crayons, scribbles, naive shapes · ages 6–14</div>
+          </div>
+          <div class="pack-num">01</div>
+        </div>
+        <div class="color-strip">
+          <span style="background:#FFD93D"></span>
+          <span style="background:#FF6B9D"></span>
+          <span style="background:#4ECDC4"></span>
+          <span style="background:#FF6B35"></span>
+          <span style="background:#0E0E10"></span>
+        </div>
+        <p class="pack-desc">Childhood drawings reborn. Wonky stars, smiley faces, rainbow scribbles, fat marker outlines, intentionally imperfect typography. Identified by Kittl as one of the breakout 2026 graphic design trends — a rebellion against polished minimalism.</p>
+        <div class="preview-row">
+          <div class="preview-sticker" style="background:#FFD93D; color:#0E0E10; border-radius:50%;">YAY!</div>
+          <div class="preview-meta">
+            <strong>Starter messages</strong>
+            <div class="preview-meta-text">"YAY!" · "the best!" · "u rock"</div>
+          </div>
+        </div>
+        <div class="pack-tags">
+          <span class="pack-tag">playful</span>
+          <span class="pack-tag">expressive</span>
+          <span class="pack-tag">naive</span>
+          <span class="pack-tag">handmade</span>
+        </div>
+      </div>
+
+      <!-- PACK 2: Y2K CHROME -->
+      <div class="pack">
+        <div class="pack-header">
+          <div>
+            <div class="pack-name">Y2K<em> Chrome</em></div>
+            <div class="pack-tagline">iridescent · 2002-core · ages 12+</div>
+          </div>
+          <div class="pack-num">02</div>
+        </div>
+        <div class="color-strip">
+          <span style="background:#C0C0E8"></span>
+          <span style="background:#FF66CC"></span>
+          <span style="background:#00E5FF"></span>
+          <span style="background:#9D4EDD"></span>
+          <span style="background:#FFFFFF"></span>
+        </div>
+        <p class="pack-desc">Holographic gradients, bubble lettering, butterfly motifs, early-2000s pop optimism. Per the 2026 sticker industry report, the Y2K aesthetic has moved from "subtle undercurrent to full-blown retro futurism movement." Exactly what Gen Alpha is discovering as new and millennials remember as theirs.</p>
+        <div class="preview-row">
+          <div class="preview-sticker" style="background:linear-gradient(135deg,#FF66CC,#00E5FF); color:#FFFFFF; border-radius:14px;">★ SLAY ★</div>
+          <div class="preview-meta">
+            <strong>Starter messages</strong>
+            <div class="preview-meta-text">"slay" · "iconic" · "main character"</div>
+          </div>
+        </div>
+        <div class="pack-tags">
+          <span class="pack-tag">y2k</span>
+          <span class="pack-tag">chrome</span>
+          <span class="pack-tag">holographic</span>
+          <span class="pack-tag">futuristic</span>
+        </div>
+      </div>
+
+      <!-- PACK 3: COQUETTE -->
+      <div class="pack">
+        <div class="pack-header">
+          <div>
+            <div class="pack-name">Coquette<em> Bow</em></div>
+            <div class="pack-tagline">soft, feminine, ribbons · teens · trending '26</div>
+          </div>
+          <div class="pack-num">03</div>
+        </div>
+        <div class="color-strip">
+          <span style="background:#FFE5EC"></span>
+          <span style="background:#F4A8C1"></span>
+          <span style="background:#D4A5A5"></span>
+          <span style="background:#FAF3DD"></span>
+          <span style="background:#8B4F5C"></span>
+        </div>
+        <p class="pack-desc">Bows, lace silhouettes, soft pinks, hand-drawn cursive script. Confirmed by multiple 2026 trend reports as one of the dominant teenage girl aesthetics, often blended with the "Social Club" preppy trend. Romantic without being saccharine — the typography does the work.</p>
+        <div class="preview-row">
+          <div class="preview-sticker" style="background:#FFE5EC; color:#8B4F5C; border-radius:18px; font-style:italic;">darling</div>
+          <div class="preview-meta">
+            <strong>Starter messages</strong>
+            <div class="preview-meta-text">"darling" · "sweet thing" · "with love"</div>
+          </div>
+        </div>
+        <div class="pack-tags">
+          <span class="pack-tag">coquette</span>
+          <span class="pack-tag">soft</span>
+          <span class="pack-tag">romantic</span>
+          <span class="pack-tag">feminine</span>
+        </div>
+      </div>
+
+      <!-- PACK 4: COTTAGECORE -->
+      <div class="pack">
+        <div class="pack-header">
+          <div>
+            <div class="pack-name">Cottage<em> Forager</em></div>
+            <div class="pack-tagline">botanical · folk · mushrooms &amp; ferns</div>
+          </div>
+          <div class="pack-num">04</div>
+        </div>
+        <div class="color-strip">
+          <span style="background:#7A9B6E"></span>
+          <span style="background:#D4A574"></span>
+          <span style="background:#8B5A3C"></span>
+          <span style="background:#E8DCC4"></span>
+          <span style="background:#3A4A2C"></span>
+        </div>
+        <p class="pack-desc">Pressed flowers, mushroom motifs, hand-drawn ferns, woodcut-style typography. The slow-living counterweight to digital chaos. Strong with bookish teens and tweens — described in trend reports as "cottagecore is a mindset, a way of slowing down."</p>
+        <div class="preview-row">
+          <div class="preview-sticker" style="background:#E8DCC4; color:#3A4A2C; border-radius:50%;">grow.</div>
+          <div class="preview-meta">
+            <strong>Starter messages</strong>
+            <div class="preview-meta-text">"grow." · "wander" · "hold space"</div>
+          </div>
+        </div>
+        <div class="pack-tags">
+          <span class="pack-tag">cottagecore</span>
+          <span class="pack-tag">botanical</span>
+          <span class="pack-tag">earthy</span>
+          <span class="pack-tag">slow</span>
+        </div>
+      </div>
+
+      <!-- PACK 5: HEISEI / KAWAII NOSTALGIA -->
+      <div class="pack">
+        <div class="pack-header">
+          <div>
+            <div class="pack-name">Bonbon<em> Drop</em></div>
+            <div class="pack-tagline">heisei retro · puffy 3D vibe · kawaii</div>
+          </div>
+          <div class="pack-num">05</div>
+        </div>
+        <div class="color-strip">
+          <span style="background:#FFB7CE"></span>
+          <span style="background:#B3E5FC"></span>
+          <span style="background:#FFF59D"></span>
+          <span style="background:#CE93D8"></span>
+          <span style="background:#FFFFFF"></span>
+        </div>
+        <p class="pack-desc">Inspired by Japan's massive 2026 sticker boom — Bonbon Drop stickers, puffy stickers, candy-jewel aesthetics. 70% of Japanese elementary kids are actively collecting these. Soft pastels, glossy 3D rendering effects, heart and star motifs, kawaii faces.</p>
+        <div class="preview-row">
+          <div class="preview-sticker" style="background:radial-gradient(circle at 30% 30%, #FFFFFF, #FFB7CE); color:#CE93D8; border-radius:50%; box-shadow: 3px 3px 0 var(--ink), inset 4px 4px 8px rgba(255,255,255,0.6);">♡</div>
+          <div class="preview-meta">
+            <strong>Starter messages</strong>
+            <div class="preview-meta-text">"hi!" · "yumi yumi" · "bestie ♡"</div>
+          </div>
+        </div>
+        <div class="pack-tags">
+          <span class="pack-tag">kawaii</span>
+          <span class="pack-tag">heisei</span>
+          <span class="pack-tag">puffy</span>
+          <span class="pack-tag">candy</span>
+        </div>
+      </div>
+
+      <!-- PACK 6: CHAOTIC HUMOR -->
+      <div class="pack">
+        <div class="pack-header">
+          <div>
+            <div class="pack-name">Doomscroll<em> Diaries</em></div>
+            <div class="pack-tagline">chaotic humor · meme-coded · ages 14+</div>
+          </div>
+          <div class="pack-num">06</div>
+        </div>
+        <div class="color-strip">
+          <span style="background:#FF3B30"></span>
+          <span style="background:#0E0E10"></span>
+          <span style="background:#F4F1EA"></span>
+          <span style="background:#34C759"></span>
+          <span style="background:#FFCC00"></span>
+        </div>
+        <p class="pack-desc">CarStickers' 2026 trend report flagged "wellness fatigue" and a surge in chaotic, funny stickers. Tongue-in-cheek typography, pessimistic optimism, screenshot-style speech bubbles, internet-poisoned humor. Teens use these to signal taste through irony.</p>
+        <div class="preview-row">
+          <div class="preview-sticker" style="background:#0E0E10; color:#FFCC00; border-radius:8px; font-size:9px;">CRYING IN<br>PUBLIC</div>
+          <div class="preview-meta">
+            <strong>Starter messages</strong>
+            <div class="preview-meta-text">"i'm fine" · "delulu" · "literally crashing out"</div>
+          </div>
+        </div>
+        <div class="pack-tags">
+          <span class="pack-tag">humor</span>
+          <span class="pack-tag">meme</span>
+          <span class="pack-tag">irony</span>
+          <span class="pack-tag">chaotic</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MOTHERS DAY BANNER -->
+  <div class="mothers-banner">
+    <h2>Mother's Day, <em>May 10</em></h2>
+    <p>Two timely packs designed for the May 10 moment. Both lean into 2026 trends: Pantone's "Transformative Teal," watercolor botanicals, and the shift away from saccharine generic-mom toward "vibe-based" personal storytelling. Pair them with audio — a kid's voice saying "I love you mom" attached to a printed sticker is the entire product.</p>
+    <div class="mothers-meta">SEASONAL · MAY 1–14, 2026 · LIMITED RUN</div>
+  </div>
+
+  <!-- MOTHERS DAY PACKS -->
+  <div class="packs">
+
+    <!-- PACK 7: COASTAL HERITAGE -->
+    <div class="pack">
+      <div class="pack-header">
+        <div>
+          <div class="pack-name">Steady<em> Hand</em></div>
+          <div class="pack-tagline">coastal heritage · transformative teal · for the anchor mom</div>
+        </div>
+        <div class="pack-num">07</div>
+      </div>
+      <div class="color-strip">
+        <span style="background:#1B4D5A"></span>
+        <span style="background:#7FB3B0"></span>
+        <span style="background:#C2956A"></span>
+        <span style="background:#F4F1EA"></span>
+        <span style="background:#0E0E10"></span>
+      </div>
+      <p class="pack-desc">Built around Pantone's Color of the Year ("Transformative Teal") and the Coastal Heritage trend identified in Darling &amp; May's 2026 Mother's Day edit. Vintage hand-drawn illustration style, weathered copper accents, maritime calm. For the family anchor — the steady mom.</p>
+      <div class="preview-row">
+        <div class="preview-sticker" style="background:#1B4D5A; color:#F4F1EA; border-radius:14px; font-style:italic; font-size:11px;">our<br>anchor.</div>
+        <div class="preview-meta">
+          <strong>Starter messages</strong>
+          <div class="preview-meta-text">"our anchor" · "thank you, mama" · "you, always"</div>
+        </div>
+      </div>
+      <div class="pack-tags">
+        <span class="pack-tag">mothers-day</span>
+        <span class="pack-tag">coastal</span>
+        <span class="pack-tag">elegant</span>
+        <span class="pack-tag">heritage</span>
+      </div>
+    </div>
+
+    <!-- PACK 8: BLOOM LINES -->
+    <div class="pack">
+      <div class="pack-header">
+        <div>
+          <div class="pack-name">Bloom<em> Lines</em></div>
+          <div class="pack-tagline">watercolor florals · single-line portraits · soft</div>
+        </div>
+        <div class="pack-num">08</div>
+      </div>
+      <div class="color-strip">
+        <span style="background:#F4D5C8"></span>
+        <span style="background:#E8B4D2"></span>
+        <span style="background:#A8C8A0"></span>
+        <span style="background:#E8DCC4"></span>
+        <span style="background:#8B6F47"></span>
+      </div>
+      <p class="pack-desc">Watercolor botanicals (per Greetopia's 2026 card design report, "still hugely popular for Mother's Day") meet single-line minimalist portraits — the two most-cited 2026 Mother's Day card design trends. Soft dusty rose, lavender, sage. Made for the mom who'd rather have meaning than maximalism.</p>
+      <div class="preview-row">
+        <div class="preview-sticker" style="background:#F4D5C8; color:#8B6F47; border-radius:50%; font-style:italic; font-size:11px;">love,<br>always</div>
+        <div class="preview-meta">
+          <strong>Starter messages</strong>
+          <div class="preview-meta-text">"love, always" · "mama bloom" · "the first hello"</div>
+        </div>
+      </div>
+      <div class="pack-tags">
+        <span class="pack-tag">mothers-day</span>
+        <span class="pack-tag">watercolor</span>
+        <span class="pack-tag">line-art</span>
+        <span class="pack-tag">soft</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RECOMMENDATION -->
+  <div class="recommend">
+    <div class="recommend-tag">Recommendation</div>
+    <h2>Ship 2–3 packs at MVP launch. Don't overload the gallery.</h2>
+    <p>The full 8 packs are a roadmap, not a launch plan. For MVP I'd ship the original 12 generic presets plus <strong>Bonbon Drop</strong> (kawaii, broadly appealing across age groups), <strong>Bloom Lines</strong> (Mother's Day timing, May 1–14), and one of <strong>Y2K Chrome</strong> or <strong>Cottage Forager</strong> based on which audience you're testing first.</p>
+    <p>Treat the rest as post-launch drops — release one new pack every 2–3 weeks. This gives users a reason to come back, lets you A/B which themes get the most stickers created, and means each release feels intentional rather than diluted by choice overload.</p>
+  </div>
+
+  <div class="endnote">
+    <strong>Why these packs and not others</strong>
+    Each pack is grounded in at least 2 trend sources from the 2026 research pass. Skipped: aesthetics that are oversaturated (clean-girl minimalism, dark academia in its first wave), too narrow (e.g., Frutiger Aero — beautiful but a corporate aesthetic), or fading (cottagecore is steady, not rising). Mother's Day-specific packs were limited to 2 because the holiday is one Sunday — too many themed packs would dilute the moment.
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,195 @@
+{
+  "version": "1.0",
+  "packs": [
+    {
+      "id": "pack-kidcore",
+      "title": "Kidcore Kraft",
+      "tagline": "Crayons, scribbles, naive shapes",
+      "audience": "kids-tweens",
+      "audience_age": "6-14",
+      "category": "kids",
+      "is_seasonal": false,
+      "sort_order": 1,
+      "palette": {
+        "primary": "#FFD93D",
+        "secondary": "#FF6B9D",
+        "accent_a": "#4ECDC4",
+        "accent_b": "#FF6B35",
+        "ink": "#0E0E10"
+      },
+      "starter_messages": ["YAY!", "the best!", "u rock", "high five", "my fav"],
+      "tags": ["kidcore", "playful", "expressive", "naive", "handmade"],
+      "agent_style_hints": "Use wonky, hand-drawn-feeling typography. Embrace asymmetry and imperfection. Bold marker-style outlines. Stars, smileys, hearts in childlike forms.",
+      "shape_preferences": ["blob", "circle", "rounded-square"],
+      "research_basis": "Kittl 2026 graphic design trend report identifies 'Kidcore' as a breakout aesthetic — crayons, stickers, naive shapes, intentionally imperfect. A direct rebellion against polished minimalism."
+    },
+    {
+      "id": "pack-y2k-chrome",
+      "title": "Y2K Chrome",
+      "tagline": "Iridescent, 2002-core, holographic",
+      "audience": "tweens-teens",
+      "audience_age": "12+",
+      "category": "teens",
+      "is_seasonal": false,
+      "sort_order": 2,
+      "palette": {
+        "primary": "#C0C0E8",
+        "secondary": "#FF66CC",
+        "accent_a": "#00E5FF",
+        "accent_b": "#9D4EDD",
+        "ink": "#0E0E10"
+      },
+      "starter_messages": ["slay", "iconic", "main character", "★ vibe ★", "era"],
+      "tags": ["y2k", "chrome", "holographic", "futuristic", "millennial-nostalgia"],
+      "agent_style_hints": "Bubble lettering, chrome/gradient effects, butterfly motifs, star and heart icons, early-2000s pop optimism. Use translucent overlapping shapes.",
+      "shape_preferences": ["circle", "rounded-square", "diamond"],
+      "research_basis": "RareCustom and CarStickers 2026 trend reports both flag Y2K as one of the dominant sticker design trends. Resonates dual-generationally — Gen Z discovering, millennials nostalgic."
+    },
+    {
+      "id": "pack-coquette-bow",
+      "title": "Coquette Bow",
+      "tagline": "Soft, feminine, ribbons",
+      "audience": "teens",
+      "audience_age": "12+",
+      "category": "teens",
+      "is_seasonal": false,
+      "sort_order": 3,
+      "palette": {
+        "primary": "#FFE5EC",
+        "secondary": "#F4A8C1",
+        "accent_a": "#D4A5A5",
+        "accent_b": "#FAF3DD",
+        "ink": "#8B4F5C"
+      },
+      "starter_messages": ["darling", "sweet thing", "with love", "softly", "yours"],
+      "tags": ["coquette", "soft", "romantic", "feminine", "delicate"],
+      "agent_style_hints": "Hand-drawn cursive script feel. Lowercase italic. Bow motifs, lace silhouettes, delicate hearts. Soft pinks and creams. Avoid uppercase — keep it whispered.",
+      "shape_preferences": ["circle", "rounded-square", "blob"],
+      "research_basis": "Knitwear.io and Aesthetic BK 2026 reports both list Coquette as a dominant Gen Z/teen aesthetic, often blended with the breakout 'Social Club' preppy-bows trend."
+    },
+    {
+      "id": "pack-cottage-forager",
+      "title": "Cottage Forager",
+      "tagline": "Botanical, folk, mushrooms & ferns",
+      "audience": "tweens-teens",
+      "audience_age": "10+",
+      "category": "all-ages",
+      "is_seasonal": false,
+      "sort_order": 4,
+      "palette": {
+        "primary": "#7A9B6E",
+        "secondary": "#D4A574",
+        "accent_a": "#8B5A3C",
+        "accent_b": "#E8DCC4",
+        "ink": "#3A4A2C"
+      },
+      "starter_messages": ["grow.", "wander", "hold space", "tend to it", "small joy"],
+      "tags": ["cottagecore", "botanical", "earthy", "slow", "folk"],
+      "agent_style_hints": "Hand-drawn ferns, pressed flower silhouettes, mushroom motifs. Woodcut-style typography or soft serif. Lowercase periods for grounded calm. Earth tones only.",
+      "shape_preferences": ["circle", "blob", "hexagon"],
+      "research_basis": "Tapstitch 2026 Gen Z report describes Cottagecore as 'a mindset, not just an aesthetic — a way of slowing down.' Steady-state strong, not faddish."
+    },
+    {
+      "id": "pack-bonbon-drop",
+      "title": "Bonbon Drop",
+      "tagline": "Heisei retro, puffy 3D vibe, kawaii",
+      "audience": "kids-tweens",
+      "audience_age": "6-12",
+      "category": "kids",
+      "is_seasonal": false,
+      "sort_order": 5,
+      "palette": {
+        "primary": "#FFB7CE",
+        "secondary": "#B3E5FC",
+        "accent_a": "#FFF59D",
+        "accent_b": "#CE93D8",
+        "ink": "#0E0E10"
+      },
+      "starter_messages": ["hi!", "yumi yumi", "bestie ♡", "kira kira", "happy day"],
+      "tags": ["kawaii", "heisei", "puffy", "candy", "japanese"],
+      "agent_style_hints": "Glossy 3D effect using radial gradients (white highlight upper-left). Pastels only. Heart, star, candy motifs. Cute kawaii faces. High shine, soft borders.",
+      "shape_preferences": ["circle", "blob", "rounded-square"],
+      "research_basis": "Vogue Japan and Tamago Daruma both report a massive 2026 sticker boom in Japan — 70% of elementary kids actively collect stickers, with Bonbon Drop and Heisei Retro aesthetics at the center. Cross-generational appeal (parents + kids together)."
+    },
+    {
+      "id": "pack-doomscroll-diaries",
+      "title": "Doomscroll Diaries",
+      "tagline": "Chaotic humor, meme-coded",
+      "audience": "teens",
+      "audience_age": "14+",
+      "category": "teens",
+      "is_seasonal": false,
+      "sort_order": 6,
+      "palette": {
+        "primary": "#FF3B30",
+        "secondary": "#0E0E10",
+        "accent_a": "#F4F1EA",
+        "accent_b": "#34C759",
+        "ink": "#FFCC00"
+      },
+      "starter_messages": ["i'm fine", "delulu", "literally crashing out", "so over it", "this is fine"],
+      "tags": ["humor", "meme", "irony", "chaotic", "internet"],
+      "agent_style_hints": "Tongue-in-cheek typography. Speech-bubble framings, screenshot aesthetics, monospace fonts mixed with serif. Pessimistic-optimistic energy. Don't try to be cool — be ironic about trying.",
+      "shape_preferences": ["square", "rounded-square", "circle"],
+      "research_basis": "CarStickers 2026 trend report explicitly identified 'wellness fatigue' driving a surge in chaotic humor stickers. Forbes data: 67% of Americans feel wellness culture is too pressuring. Teens use this as taste-signaling through irony."
+    },
+    {
+      "id": "pack-steady-hand",
+      "title": "Steady Hand",
+      "tagline": "Coastal heritage for the anchor mom",
+      "audience": "all",
+      "audience_age": "all",
+      "category": "mothers-day",
+      "is_seasonal": true,
+      "season_window": { "start": "2026-04-25", "end": "2026-05-14" },
+      "sort_order": 7,
+      "palette": {
+        "primary": "#1B4D5A",
+        "secondary": "#7FB3B0",
+        "accent_a": "#C2956A",
+        "accent_b": "#F4F1EA",
+        "ink": "#0E0E10"
+      },
+      "starter_messages": ["our anchor", "thank you, mama", "you, always", "steady ground", "the matriarch"],
+      "tags": ["mothers-day", "coastal", "elegant", "heritage", "seasonal"],
+      "agent_style_hints": "Vintage hand-drawn illustration feel. Maritime motifs (anchor, wave, lighthouse) used sparingly. Weathered copper for warmth. Italic lowercase serif for tender phrases. Calm and grounded — not cute.",
+      "shape_preferences": ["rounded-square", "circle", "badge"],
+      "research_basis": "Pantone's 2026 Color of the Year is 'Transformative Teal'. Darling & May's 2026 Mother's Day Edit identified Coastal Heritage as one of the year's four breakout Mother's Day aesthetics."
+    },
+    {
+      "id": "pack-bloom-lines",
+      "title": "Bloom Lines",
+      "tagline": "Watercolor florals meet single-line portraits",
+      "audience": "all",
+      "audience_age": "all",
+      "category": "mothers-day",
+      "is_seasonal": true,
+      "season_window": { "start": "2026-04-25", "end": "2026-05-14" },
+      "sort_order": 8,
+      "palette": {
+        "primary": "#F4D5C8",
+        "secondary": "#E8B4D2",
+        "accent_a": "#A8C8A0",
+        "accent_b": "#E8DCC4",
+        "ink": "#8B6F47"
+      },
+      "starter_messages": ["love, always", "mama bloom", "the first hello", "for you, mom", "softest landing"],
+      "tags": ["mothers-day", "watercolor", "line-art", "soft", "seasonal"],
+      "agent_style_hints": "Soft watercolor wash backgrounds. Single continuous line drawings for portraits or florals. Italic serif for handwritten feel. Dusty rose, lavender, sage. Negative space is part of the design.",
+      "shape_preferences": ["circle", "rounded-square", "blob"],
+      "research_basis": "Greetopia 2026 card trend report and Accio Mother's Day card design report both highlight watercolor florals and minimalist line-art portraits as the two leading 2026 Mother's Day card aesthetics."
+    }
+  ],
+  "rollout_recommendation": {
+    "mvp_launch": ["pack-bonbon-drop", "pack-bloom-lines"],
+    "post_launch_drops": [
+      { "pack_id": "pack-y2k-chrome", "release_at": "+2 weeks" },
+      { "pack_id": "pack-cottage-forager", "release_at": "+4 weeks" },
+      { "pack_id": "pack-kidcore", "release_at": "+6 weeks" },
+      { "pack_id": "pack-coquette-bow", "release_at": "+8 weeks" },
+      { "pack_id": "pack-doomscroll-diaries", "release_at": "+10 weeks" },
+      { "pack_id": "pack-steady-hand", "release_at": "next mothers day cycle" }
+    ],
+    "rationale": "Ship 2 packs alongside the original 12 generic presets at MVP launch — Bonbon Drop has the broadest cross-age appeal, Bloom Lines is timed for May 10. Releasing one pack every 2 weeks post-launch creates a return-to-app rhythm and lets you A/B which themes drive the most sticker creation. Steady Hand is held for next year's Mother's Day cycle to avoid splitting attention with Bloom Lines in the same season."
+  }
+}
