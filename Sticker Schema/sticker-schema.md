@@ -36,8 +36,9 @@
 
 ### `version` *(string, required)*
 Schema version. Currently `"1.1"`. Bump when making breaking changes.
-(`1.1` adds the `illustration` element type and is backwards-compatible — renderers that
-don't recognize an element type should silently skip it rather than crash.)
+(`1.1` adds the `illustration` element type, the `watercolor` background type, and
+multi-stop gradient support. Backwards-compatible — renderers that don't recognize
+an element type or background type should fall back gracefully rather than crash.)
 
 ### `id` *(string | null)*
 UUID once saved to DB. `null` when freshly generated and not yet persisted.
@@ -62,16 +63,76 @@ Always `{ "width": 1000, "height": 1000 }` for MVP. Reserved for non-square stic
 
 ### `background` *(object, required)*
 
+Four background types. Mix-and-match is not supported — pick one `type`.
+
+#### Solid
+
+```json
+{ "type": "solid", "color": "<palette-token>" }
+```
+
+#### Gradient — two-stop shorthand *(backwards-compatible)*
+
 ```json
 {
-  "type": "solid" | "gradient" | "noise",
-  "color": "<palette-token>",         // for solid
-  "from": "<palette-token>",          // for gradient
-  "to": "<palette-token>",            // for gradient
-  "direction": "diagonal" | "vertical" | "horizontal" | "radial",  // for gradient
-  "intensity": 0.0–1.0                // for noise overlay strength
+  "type": "gradient",
+  "from": "<palette-token>",
+  "to": "<palette-token>",
+  "direction": "diagonal" | "vertical" | "horizontal" | "radial"
 }
 ```
+
+#### Gradient — multi-stop *(3 or more colors)*
+
+Use `stops` instead of `from`/`to`. Positions are 0.0–1.0 along the gradient axis.
+Renderer uses this form when `stops` is present; `from`/`to` is ignored if both appear.
+
+```json
+{
+  "type": "gradient",
+  "stops": [
+    { "color": "<palette-token>", "position": 0.0 },
+    { "color": "<palette-token>", "position": 0.45 },
+    { "color": "<palette-token>", "position": 1.0 }
+  ],
+  "direction": "diagonal" | "vertical" | "horizontal" | "radial"
+}
+```
+
+#### Noise
+
+```json
+{ "type": "noise", "color": "<palette-token>", "intensity": 0.0–1.0 }
+```
+
+#### Watercolor *(new in v1.1)*
+
+Simulates a soft watercolor wash using overlapping radial gradient blobs rendered
+through an SVG `feGaussianBlur` filter. Each `wash` is an independent color pool
+that bleeds into its neighbors. Use 2–5 washes for a natural result.
+
+```json
+{
+  "type": "watercolor",
+  "base": "<palette-token>",    // underlying paper tone — usually "paper" or "paper-2"
+  "washes": [
+    {
+      "color": "<palette-token>",
+      "cx": 0.0–1.0,            // normalized x-center of this blob (0 = left edge)
+      "cy": 0.0–1.0,            // normalized y-center (0 = top edge)
+      "r":  0.2–1.0,            // normalized radius relative to canvas width
+      "opacity": 0.2–0.9        // per-wash opacity; keep ≤0.7 for soft bleed
+    }
+    // 2–5 wash objects
+  ],
+  "blur": 40–200                // feGaussianBlur sigma — higher = more bleed/spread
+}
+```
+
+The renderer layers each wash as a `<rect>` filled with the blob's radial gradient
+(color→transparent), applies the blur filter, then clips the whole stack to the
+sticker shape. The blurred edges naturally create the irregular, pooled look of
+real watercolor without any path complexity.
 
 ### `border` *(object | null)*
 
@@ -343,7 +404,7 @@ Reserved for Phase 2+:
 - `animation` (animated stickers for digital use)
 - `audio_visualizer` (waveform rendered into the sticker)
 - `multi_layer_clip` (stickers within stickers)
-- `watercolor` background type and multi-stop gradient support (scheduled for schema v1.2)
+- `path` element type (fully custom user-supplied SVG path data — for power users post-MVP)
 
 ---
 
