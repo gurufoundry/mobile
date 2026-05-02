@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sonic Sticker — User Flow & Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=JetBrains+Mono:wght@400;500;700&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0E0E10;
+    --paper: #F4F1EA;
+    --paper-2: #EAE5D9;
+    --acid: #D4FF3D;
+    --coral: #FF5A3D;
+    --plum: #2B1B4A;
+    --sky: #6FA8FF;
+    --line: rgba(14,14,16,0.12);
+    --line-strong: rgba(14,14,16,0.6);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter Tight', sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255,90,61,0.08) 0%, transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(212,255,61,0.10) 0%, transparent 45%);
+    min-height: 100vh;
+  }
+
+  /* Grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.35;
+    mix-blend-mode: multiply;
+    z-index: 100;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  }
+
+  .container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 64px 32px 120px;
+  }
+
+  /* HEADER */
+  .masthead {
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 24px;
+    margin-bottom: 48px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 24px;
+  }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--ink);
+    opacity: 0.65;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .eyebrow span.dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--coral);
+    display: inline-block;
+  }
+  h1.title {
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    font-size: clamp(48px, 8vw, 96px);
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+    font-variation-settings: "opsz" 144;
+  }
+  h1.title em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--coral);
+  }
+  .meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-align: right;
+    opacity: 0.7;
+    line-height: 1.7;
+  }
+
+  /* SECTION HEADERS */
+  .section {
+    margin-top: 96px;
+  }
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--coral);
+    margin-bottom: 12px;
+  }
+  h2.section-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: clamp(32px, 4.5vw, 52px);
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+    font-variation-settings: "opsz" 100;
+  }
+  .section-intro {
+    max-width: 680px;
+    font-size: 17px;
+    color: var(--ink);
+    opacity: 0.78;
+    margin-bottom: 40px;
+  }
+
+  /* CONCEPT BLOCK */
+  .concept {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 56px 48px;
+    border-radius: 24px;
+    position: relative;
+    overflow: hidden;
+    margin-top: 32px;
+  }
+  .concept::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 280px; height: 280px;
+    background: var(--acid);
+    border-radius: 50%;
+    opacity: 0.9;
+  }
+  .concept-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--acid);
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+  .concept h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    max-width: 580px;
+    position: relative;
+  }
+  .concept p {
+    max-width: 580px;
+    opacity: 0.85;
+    font-size: 16px;
+    position: relative;
+  }
+
+  /* SCREEN FLOW */
+  .screens {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 32px;
+  }
+  .screen {
+    background: var(--paper-2);
+    border: 1.5px solid var(--ink);
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.2s ease;
+  }
+  .screen:hover { transform: translateY(-3px); }
+
+  .screen-num {
+    position: absolute;
+    top: 12px; right: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    background: var(--ink);
+    color: var(--acid);
+    padding: 4px 8px;
+    border-radius: 8px;
+    z-index: 2;
+  }
+
+  /* Phone mockup inside screen */
+  .phone {
+    background: var(--ink);
+    border-radius: 14px;
+    padding: 8px;
+    margin: 20px 24px 0;
+    aspect-ratio: 9 / 16;
+    position: relative;
+  }
+  .phone-screen {
+    background: var(--paper);
+    border-radius: 8px;
+    height: 100%;
+    padding: 16px 12px;
+    overflow: hidden;
+    position: relative;
+    font-size: 9px;
+  }
+
+  .screen-info {
+    padding: 20px 24px 24px;
+  }
+  .screen-info h4 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 20px;
+    margin-bottom: 6px;
+    line-height: 1.15;
+  }
+  .screen-info p {
+    font-size: 13px;
+    opacity: 0.72;
+    line-height: 1.5;
+  }
+  .screen-info .tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 3px 7px;
+    border-radius: 4px;
+    margin-top: 12px;
+    margin-right: 6px;
+  }
+  .screen-info .tag.alt {
+    background: var(--coral);
+  }
+  .screen-info .tag.lime {
+    background: var(--acid);
+    color: var(--ink);
+  }
+
+  /* Mock UI bits inside phones */
+  .m-pill {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4px 8px;
+    border-radius: 20px;
+    display: inline-block;
+    font-size: 7px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .m-card {
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 8px;
+    margin-bottom: 6px;
+  }
+  .m-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    margin-top: 8px;
+  }
+  .m-thumb {
+    aspect-ratio: 1;
+    border-radius: 6px;
+    border: 1px solid var(--ink);
+    background: var(--paper-2);
+    position: relative;
+    overflow: hidden;
+  }
+  .m-thumb.coral { background: var(--coral); }
+  .m-thumb.lime { background: var(--acid); }
+  .m-thumb.plum { background: var(--plum); }
+  .m-thumb.sky { background: var(--sky); }
+  .m-bar {
+    height: 6px;
+    background: var(--ink);
+    border-radius: 3px;
+    margin-bottom: 4px;
+    opacity: 0.15;
+  }
+  .m-bar.short { width: 60%; }
+  .m-bar.med { width: 80%; }
+  .m-bubble {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 6px 8px;
+    border-radius: 8px 8px 8px 2px;
+    font-size: 8px;
+    margin-bottom: 5px;
+    max-width: 80%;
+  }
+  .m-bubble.user {
+    background: var(--acid);
+    color: var(--ink);
+    border-radius: 8px 8px 2px 8px;
+    margin-left: auto;
+  }
+  .m-cta {
+    background: var(--coral);
+    color: var(--paper);
+    text-align: center;
+    padding: 6px;
+    border-radius: 6px;
+    font-size: 8px;
+    font-weight: 600;
+    margin-top: auto;
+  }
+  .m-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 6px;
+    margin-bottom: 8px;
+    opacity: 0.6;
+  }
+  .m-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 11px;
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+  .m-sub {
+    font-size: 7px;
+    opacity: 0.6;
+    margin-bottom: 8px;
+  }
+  .m-flex {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 4px;
+  }
+  .m-spacer { flex: 1; }
+
+  /* Sticker preview big */
+  .m-sticker {
+    aspect-ratio: 1;
+    background: var(--coral);
+    border-radius: 12px;
+    border: 2px solid var(--ink);
+    position: relative;
+    margin: 6px auto 8px;
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--paper);
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 14px;
+    text-align: center;
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+  .m-nfc {
+    position: absolute;
+    bottom: 4px; right: 4px;
+    width: 12px; height: 12px;
+    border: 1.5px solid var(--paper);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5px;
+  }
+
+  /* DESIGN SYSTEM */
+  .palette {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+  }
+  .swatch {
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 16px;
+  }
+  .swatch-color {
+    aspect-ratio: 16/10;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    border: 1px solid var(--ink);
+    position: relative;
+  }
+  .swatch-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 2px;
+  }
+  .swatch-hex {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    opacity: 0.65;
+  }
+  .swatch-role {
+    font-size: 12px;
+    margin-top: 8px;
+    opacity: 0.7;
+  }
+
+  /* Typography demo */
+  .type-demo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 24px;
+  }
+  .type-card {
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    padding: 32px;
+    border-radius: 16px;
+  }
+  .type-card .role {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    opacity: 0.6;
+    margin-bottom: 8px;
+  }
+  .type-card .name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+  .type-display {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 56px;
+    line-height: 0.95;
+    letter-spacing: -0.025em;
+  }
+  .type-body {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  /* Flow diagram */
+  .flow-wrap {
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 24px;
+    padding: 48px 32px;
+    margin-top: 32px;
+    overflow-x: auto;
+  }
+  .flow {
+    display: flex;
+    align-items: stretch;
+    gap: 8px;
+    min-width: 1000px;
+  }
+  .flow-node {
+    flex: 1;
+    min-width: 100px;
+    background: var(--paper);
+    color: var(--ink);
+    border-radius: 12px;
+    padding: 16px 12px;
+    text-align: center;
+    position: relative;
+    font-size: 11px;
+  }
+  .flow-node .n {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--coral);
+    margin-bottom: 6px;
+  }
+  .flow-node .name {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 1.1;
+  }
+  .flow-arrow {
+    align-self: center;
+    color: var(--acid);
+    font-size: 18px;
+  }
+  .flow-branch {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 0.8;
+  }
+  .flow-branch .flow-node {
+    padding: 10px 8px;
+    font-size: 10px;
+  }
+  .flow-branch .flow-node .name {
+    font-size: 11px;
+  }
+
+  /* MVP Scope table */
+  .scope {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 32px;
+  }
+  .scope-col {
+    background: var(--paper-2);
+    border-radius: 16px;
+    padding: 28px;
+    border: 1px solid var(--line);
+  }
+  .scope-col.in {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+  .scope-col.in .scope-tag {
+    background: var(--acid);
+    color: var(--ink);
+  }
+  .scope-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    background: var(--coral);
+    color: var(--paper);
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+  }
+  .scope-col h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+  .scope-col ul {
+    list-style: none;
+    padding: 0;
+  }
+  .scope-col li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 14px;
+    display: flex;
+    gap: 10px;
+  }
+  .scope-col.in li {
+    border-color: rgba(244,241,234,0.12);
+  }
+  .scope-col li:last-child { border: none; }
+  .scope-col li::before {
+    content: '→';
+    color: var(--coral);
+    font-weight: 600;
+  }
+  .scope-col.in li::before {
+    color: var(--acid);
+  }
+
+  /* Footer */
+  .endnote {
+    margin-top: 96px;
+    padding-top: 40px;
+    border-top: 2px solid var(--ink);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    opacity: 0.7;
+  }
+  .endnote a { color: var(--coral); }
+
+  @media (max-width: 720px) {
+    .container { padding: 40px 20px 80px; }
+    .scope { grid-template-columns: 1fr; }
+    .type-demo { grid-template-columns: 1fr; }
+    .masthead { grid-template-columns: 1fr; }
+    .meta { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- MASTHEAD -->
+  <header class="masthead">
+    <div>
+      <div class="eyebrow"><span class="dot"></span> Working Doc · v0.1 · MVP Scope</div>
+      <h1 class="title">Sonic <em>Sticker</em></h1>
+    </div>
+    <div class="meta">
+      Project / Sticker × Audio × NFC<br>
+      Stack / React + Supabase + Claude API<br>
+      Phase / Web MVP → React Native
+    </div>
+  </header>
+
+  <!-- CONCEPT -->
+  <section>
+    <div class="concept">
+      <div class="concept-label">The Concept</div>
+      <h3>A printable sticker that holds a voice. Tap it with your phone, the moment plays back.</h3>
+      <p>An AI-guided creator where you chat with an agent, get a custom sticker design in seconds, then attach a voice note. The NFC-enabled sticker becomes a physical bookmark to a memory, message, or moment — scanned to replay the audio inside the app.</p>
+    </div>
+  </section>
+
+  <!-- SECTION 1: USER FLOW -->
+  <section class="section">
+    <div class="section-num">01 / FLOW MAP</div>
+    <h2 class="section-title">The journey, end to end</h2>
+    <p class="section-intro">A linear creation path with two re-entry loops: scanning a sticker (NFC tap) and adding audio retroactively from the gallery.</p>
+
+    <div class="flow-wrap">
+      <div class="flow">
+        <div class="flow-node">
+          <div class="n">01</div>
+          <div class="name">Onboarding</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="n">02</div>
+          <div class="name">Preset Gallery</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-branch">
+          <div class="flow-node">
+            <div class="n">03a</div>
+            <div class="name">Pick Preset</div>
+          </div>
+          <div class="flow-node">
+            <div class="n">03b</div>
+            <div class="name">Start Fresh</div>
+          </div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="n">04</div>
+          <div class="name">Guided Chat</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="n">05</div>
+          <div class="name">Sticker Preview</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="n">06</div>
+          <div class="name">Download / Print</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="n">07</div>
+          <div class="name">Add Audio</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: SCREENS -->
+  <section class="section">
+    <div class="section-num">02 / SCREENS</div>
+    <h2 class="section-title">Eight screens for the MVP</h2>
+    <p class="section-intro">Each screen is single-purpose. The chat creator is full-screen and modal. Everything else lives in a simple bottom-tab structure: Home (gallery) · Create · Library.</p>
+
+    <div class="screens">
+
+      <!-- 01 ONBOARDING -->
+      <div class="screen">
+        <div class="screen-num">01</div>
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="m-flex">
+              <div class="m-status"><span>9:41</span><span>● ● ●</span></div>
+              <div class="m-spacer"></div>
+              <div class="m-sticker" style="background: var(--acid); color: var(--ink); font-size: 11px;">SONIC<br>STICKER</div>
+              <div class="m-title" style="text-align: center;">Stickers that<br>speak.</div>
+              <div class="m-sub" style="text-align: center;">Design, print, tap, listen.</div>
+              <div class="m-spacer"></div>
+              <div class="m-cta">Start creating</div>
+              <div style="text-align: center; font-size: 7px; opacity: 0.6; margin-top: 4px;">I have an account</div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-info">
+          <h4>Welcome / Sign-in</h4>
+          <p>Three-frame intro carousel ending in email + Apple/Google sign-in. Skipped after first launch.</p>
+          <span class="tag">Auth</span>
+          <span class="tag">First-run only</span>
+        </div>
+      </div>
+
+      <!-- 02 GALLERY -->
+      <div class="screen">
+        <div class="screen-num">02</div>
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="m-flex">
+              <div class="m-status"><span>Home</span><span>⌕</span></div>
+              <div class="m-title">Templates</div>
+              <div class="m-sub">Start from a preset</div>
+              <div style="display: flex; gap: 4px; margin-bottom: 6px;">
+                <span class="m-pill" style="background: var(--coral);">All</span>
+                <span class="m-pill" style="background: var(--paper-2); color: var(--ink); border: 1px solid var(--ink);">Memory</span>
+                <span class="m-pill" style="background: var(--paper-2); color: var(--ink); border: 1px solid var(--ink);">Gift</span>
+              </div>
+              <div class="m-grid">
+                <div class="m-thumb coral"></div>
+                <div class="m-thumb lime"></div>
+                <div class="m-thumb plum"></div>
+                <div class="m-thumb sky"></div>
+                <div class="m-thumb" style="background: var(--paper-2);"></div>
+                <div class="m-thumb coral"></div>
+              </div>
+              <div class="m-spacer"></div>
+              <div class="m-cta">+ Create from scratch</div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-info">
+          <h4>Preset Gallery (Home)</h4>
+          <p>Landing screen. Curated grid of sticker templates with category chips. Floating CTA to start fresh with the agent.</p>
+          <span class="tag lime">Default landing</span>
+          <span class="tag">Filterable</span>
+        </div>
+      </div>
+
+      <!-- 03 PRESET DETAIL -->
+      <div class="screen">
+        <div class="screen-num">03</div>
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="m-flex">
+              <div class="m-status"><span>‹ Back</span><span>♡</span></div>
+              <div class="m-sticker">Hello,<br>friend</div>
+              <div class="m-title" style="font-size: 10px;">Greeting Card 01</div>
+              <div class="m-sub">By Sonic Studio · Free</div>
+              <div class="m-bar med"></div>
+              <div class="m-bar short"></div>
+              <div class="m-spacer"></div>
+              <div class="m-cta">Customize with AI →</div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-info">
+          <h4>Preset Detail</h4>
+          <p>Tap a template to see the sticker in larger form, with a single CTA to start customizing through the agent.</p>
+          <span class="tag">Optional step</span>
+          <span class="tag">Passes context to chat</span>
+        </div>
+      </div>
+
+      <!-- 04 GUIDED CHAT -->
+      <div class="screen">
+        <div class="screen-num">04</div>
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="m-flex">
+              <div class="m-status"><span>✕ Close</span><span>Step 2/4</span></div>
+              <div class="m-bubble">Hey Guru — what's the sticker for?</div>
+              <div class="m-bubble user">A birthday gift for my brother</div>
+              <div class="m-bubble">Nice. What's the vibe — playful, sentimental, or bold?</div>
+              <div style="display: flex; flex-wrap: wrap; gap: 3px; margin-top: 4px;">
+                <span class="m-pill" style="background: var(--coral);">Playful</span>
+                <span class="m-pill" style="background: var(--paper-2); color: var(--ink); border: 1px solid var(--ink);">Sentimental</span>
+                <span class="m-pill" style="background: var(--paper-2); color: var(--ink); border: 1px solid var(--ink);">Bold</span>
+              </div>
+              <div class="m-spacer"></div>
+              <div style="background: var(--paper-2); border: 1px solid var(--ink); border-radius: 12px; padding: 4px 8px; font-size: 7px; opacity: 0.6;">Type or pick above…</div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-info">
+          <h4>Guided Chat (Full-screen)</h4>
+          <p>Modal AI agent walks through 3–5 questions: purpose → vibe → color → message → shape. Tappable suggestion chips speed it up.</p>
+          <span class="tag alt">Core experience</span>
+          <span class="tag">Claude API</span>
+        </div>
+      </div>
+
+      <!-- 05 GENERATING -->
+      <div class="screen">
+        <div class="screen-num">05</div>
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="m-flex">
+              <div class="m-status"><span>Generating</span><span></span></div>
+              <div class="m-spacer"></div>
+              <div style="text-align: center;">
+                <div style="width: 60px; height: 60px; border-radius: 50%; border: 3px solid var(--ink); border-top-color: var(--coral); margin: 0 auto 12px; animation: spin 1s linear infinite;"></div>
+                <div class="m-title" style="text-align: center;">Designing<br>your sticker…</div>
+                <div class="m-sub" style="text-align: center;">Sketching layouts · 4s</div>
+              </div>
+              <div class="m-spacer"></div>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 6px; opacity: 0.5; text-align: center;">Try 1 of 3</div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-info">
+          <h4>Generating State</h4>
+          <p>Brief loading screen with playful copy. Includes shuffle/regenerate option after first attempt.</p>
+          <span class="tag">2–6 sec</span>
+          <span class="tag">Skeletal preview</span>
+        </div>
+      </div>
+
+      <!-- 06 PREVIEW -->
+      <div class="screen">
+        <div class="screen-num">06</div>
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="m-flex">
+              <div class="m-status"><span>‹ Edit</span><span>↻ Regenerate</span></div>
+              <div class="m-sticker">Happy<br>40, Bro</div>
+              <div style="display: flex; gap: 4px; justify-content: center; margin-bottom: 8px;">
+                <div style="width: 14px; height: 14px; background: var(--coral); border-radius: 50%; border: 1px solid var(--ink);"></div>
+                <div style="width: 14px; height: 14px; background: var(--acid); border-radius: 50%; border: 1px solid var(--ink);"></div>
+                <div style="width: 14px; height: 14px; background: var(--plum); border-radius: 50%; border: 1px solid var(--ink);"></div>
+                <div style="width: 14px; height: 14px; background: var(--sky); border-radius: 50%; border: 1px solid var(--ink);"></div>
+              </div>
+              <div class="m-sub" style="text-align: center;">Tap colors · drag to resize</div>
+              <div class="m-spacer"></div>
+              <div class="m-cta">Save & continue →</div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-info">
+          <h4>Sticker Preview</h4>
+          <p>Live preview with quick tweaks: color swap, scale, regenerate, or send back to chat for refinement.</p>
+          <span class="tag alt">Decision point</span>
+          <span class="tag">Editable</span>
+        </div>
+      </div>
+
+      <!-- 07 EXPORT -->
+      <div class="screen">
+        <div class="screen-num">07</div>
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="m-flex">
+              <div class="m-status"><span>‹ Back</span><span></span></div>
+              <div class="m-title">Make it real</div>
+              <div class="m-sub">Choose a format</div>
+              <div class="m-card" style="background: var(--ink); color: var(--paper); border: none;">
+                <div style="font-family: 'Fraunces', serif; font-weight: 600; font-size: 10px;">PRINT-AT-HOME</div>
+                <div style="font-size: 7px; opacity: 0.7;">PDF · A4 · Cut guides</div>
+              </div>
+              <div class="m-card">
+                <div style="font-family: 'Fraunces', serif; font-weight: 600; font-size: 10px;">ORDER NFC STICKER</div>
+                <div style="font-size: 7px; opacity: 0.7;">Pre-encoded · ships in 5 days</div>
+              </div>
+              <div class="m-card">
+                <div style="font-family: 'Fraunces', serif; font-weight: 600; font-size: 10px;">DOWNLOAD PNG</div>
+                <div style="font-size: 7px; opacity: 0.7;">Transparent bg · 1024px</div>
+              </div>
+              <div class="m-spacer"></div>
+              <div class="m-cta" style="background: var(--acid); color: var(--ink);">+ Add audio</div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-info">
+          <h4>Download / Print</h4>
+          <p>Three export paths (PDF, NFC sticker order, PNG). Audio attachment offered as next step.</p>
+          <span class="tag">Three formats</span>
+          <span class="tag">Optional audio</span>
+        </div>
+      </div>
+
+      <!-- 08 AUDIO -->
+      <div class="screen">
+        <div class="screen-num">08</div>
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="m-flex">
+              <div class="m-status"><span>Recording</span><span>0:12</span></div>
+              <div class="m-title">Add a voice note</div>
+              <div class="m-sub">Up to 60 seconds</div>
+              <div class="m-spacer"></div>
+              <div style="text-align: center;">
+                <div style="display: flex; gap: 2px; justify-content: center; align-items: end; height: 40px; margin-bottom: 16px;">
+                  <div style="width: 3px; height: 20%; background: var(--ink);"></div>
+                  <div style="width: 3px; height: 60%; background: var(--ink);"></div>
+                  <div style="width: 3px; height: 90%; background: var(--coral);"></div>
+                  <div style="width: 3px; height: 70%; background: var(--coral);"></div>
+                  <div style="width: 3px; height: 40%; background: var(--coral);"></div>
+                  <div style="width: 3px; height: 80%; background: var(--coral);"></div>
+                  <div style="width: 3px; height: 50%; background: var(--ink);"></div>
+                  <div style="width: 3px; height: 30%; background: var(--ink);"></div>
+                </div>
+                <div style="width: 50px; height: 50px; background: var(--coral); border-radius: 50%; margin: 0 auto; border: 3px solid var(--ink);"></div>
+              </div>
+              <div class="m-spacer"></div>
+              <div class="m-cta" style="background: var(--ink);">Stop & attach</div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-info">
+          <h4>Record Audio</h4>
+          <p>One-tap voice recorder with waveform feedback. Stored in cloud and linked to the sticker's NFC tag URL.</p>
+          <span class="tag alt">The magic moment</span>
+          <span class="tag">Up to 60s</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Re-entry loops -->
+    <h2 class="section-title" style="margin-top: 80px; font-size: 32px;">Plus two re-entry paths</h2>
+    <div class="screens" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); max-width: 760px;">
+      <!-- Library -->
+      <div class="screen">
+        <div class="screen-num">L</div>
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="m-flex">
+              <div class="m-status"><span>Library</span><span>⌕</span></div>
+              <div class="m-title">Your stickers</div>
+              <div class="m-sub">12 created · 4 with audio</div>
+              <div class="m-grid">
+                <div class="m-thumb coral"><div class="m-nfc">♪</div></div>
+                <div class="m-thumb lime"></div>
+                <div class="m-thumb plum"><div class="m-nfc">♪</div></div>
+                <div class="m-thumb sky"></div>
+                <div class="m-thumb coral"><div class="m-nfc">♪</div></div>
+                <div class="m-thumb" style="background: var(--paper-2);"></div>
+              </div>
+              <div class="m-spacer"></div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-info">
+          <h4>Library</h4>
+          <p>Personal gallery of created stickers. Audio-attached ones marked with a small note icon. Tap to play, add audio retroactively, or re-export.</p>
+          <span class="tag">Re-entry: Add audio later</span>
+        </div>
+      </div>
+      <!-- Scan -->
+      <div class="screen">
+        <div class="screen-num">S</div>
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="m-flex">
+              <div class="m-status"><span>NFC Tap</span><span></span></div>
+              <div class="m-spacer"></div>
+              <div class="m-sticker" style="background: var(--plum);">For Mom<br>♥</div>
+              <div class="m-sub" style="text-align: center;">Created Mar 12 · 0:24</div>
+              <div style="display: flex; gap: 6px; align-items: center; justify-content: center; background: var(--ink); color: var(--paper); border-radius: 20px; padding: 6px 12px; margin-top: 8px;">
+                <div style="width: 8px; height: 8px; background: var(--coral); border-radius: 50%;"></div>
+                <span style="font-size: 8px;">▶ Playing voice note</span>
+              </div>
+              <div class="m-spacer"></div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-info">
+          <h4>Sticker Playback</h4>
+          <p>Opened via NFC tap or QR fallback. Sticker appears, audio auto-plays. Optional reaction or save-to-library if not the original creator.</p>
+          <span class="tag alt">Re-entry: Tap to play</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: DESIGN SYSTEM -->
+  <section class="section">
+    <div class="section-num">03 / DESIGN SYSTEM</div>
+    <h2 class="section-title">A look that earns trust and feels human</h2>
+    <p class="section-intro">2026 sticker culture is leaning into <strong>tactile, imperfect, sensory design</strong> — away from sterile minimalism. The look pairs a warm paper background with a confident editorial type system and high-energy accent colors. It feels designed, not generated.</p>
+
+    <h3 style="font-family: 'Fraunces', serif; font-size: 24px; margin-top: 40px;">Color palette</h3>
+    <div class="palette">
+      <div class="swatch">
+        <div class="swatch-color" style="background: #F4F1EA;"></div>
+        <div class="swatch-name">Paper</div>
+        <div class="swatch-hex">#F4F1EA</div>
+        <div class="swatch-role">Primary background. Warm off-white, never sterile.</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #0E0E10;"></div>
+        <div class="swatch-name">Ink</div>
+        <div class="swatch-hex">#0E0E10</div>
+        <div class="swatch-role">Text, strokes, primary buttons. High-contrast anchor.</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #FF5A3D;"></div>
+        <div class="swatch-name">Coral</div>
+        <div class="swatch-hex">#FF5A3D</div>
+        <div class="swatch-role">Primary accent. CTAs, highlights, energy.</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #D4FF3D;"></div>
+        <div class="swatch-name">Acid</div>
+        <div class="swatch-hex">#D4FF3D</div>
+        <div class="swatch-role">Secondary accent. Success states, "live" indicators.</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #2B1B4A;"></div>
+        <div class="swatch-name">Plum</div>
+        <div class="swatch-hex">#2B1B4A</div>
+        <div class="swatch-role">Deep accent. Audio playback, emotional surfaces.</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #6FA8FF;"></div>
+        <div class="swatch-name">Sky</div>
+        <div class="swatch-hex">#6FA8FF</div>
+        <div class="swatch-role">Tertiary. Information, cool counterweight.</div>
+      </div>
+    </div>
+
+    <h3 style="font-family: 'Fraunces', serif; font-size: 24px; margin-top: 56px;">Typography</h3>
+    <div class="type-demo">
+      <div class="type-card">
+        <div class="role">Display & Headlines</div>
+        <div class="name">Fraunces</div>
+        <div class="type-display">Make it<br>memorable.</div>
+      </div>
+      <div class="type-card">
+        <div class="role">Body & UI</div>
+        <div class="name">Inter Tight</div>
+        <p class="type-body">Clean, neutral, and dense enough for chat bubbles, captions, and form fields. Inter Tight gives the interface its calm baseline so the personality lives in the headlines, color, and motion.</p>
+        <p style="font-family: 'JetBrains Mono', monospace; font-size: 12px; margin-top: 16px; opacity: 0.7;">+ JetBrains Mono · Labels &amp; meta</p>
+      </div>
+    </div>
+
+    <p class="section-intro" style="margin-top: 32px;"><strong>Why this pairing:</strong> Fraunces is a contemporary serif with optical sizing — gives editorial warmth without feeling old. Inter Tight is grounded and modern. Together they signal "made with care" rather than "made by template."</p>
+  </section>
+
+  <!-- SECTION 4: MVP SCOPE -->
+  <section class="section">
+    <div class="section-num">04 / MVP SCOPE</div>
+    <h2 class="section-title">What ships, what waits</h2>
+    <p class="section-intro">Build for a single user (you) first. Ship a creator that turns a 2-minute conversation into a printable sticker with optional audio, and prove the loop works before adding social, marketplace, or team features.</p>
+    <div class="scope">
+      <div class="scope-col in">
+        <div class="scope-tag">In MVP</div>
+        <h3>Phase 1 — Web</h3>
+        <ul>
+          <li>Email + Apple/Google sign-in</li>
+          <li>Curated preset gallery (10–15 templates)</li>
+          <li>Guided AI chat creator (Claude API)</li>
+          <li>Sticker preview with quick edits</li>
+          <li>PNG + print-ready PDF export</li>
+          <li>Audio recording &amp; cloud storage</li>
+          <li>Personal library</li>
+          <li>NFC tag URL routing (scan → playback page)</li>
+        </ul>
+      </div>
+      <div class="scope-col">
+        <div class="scope-tag">Phase 2+</div>
+        <h3>Later</h3>
+        <ul>
+          <li>Native iOS / Android (React Native)</li>
+          <li>Direct NFC writing from device</li>
+          <li>Order-physical-stickers fulfillment</li>
+          <li>Sharing / sticker recipients without account</li>
+          <li>Sticker collections &amp; albums</li>
+          <li>Themed template packs (seasonal)</li>
+          <li>Voice-to-sticker (audio drives design)</li>
+          <li>Public template marketplace</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENDNOTE -->
+  <footer class="endnote">
+    <div>
+      <div style="font-family: 'Fraunces', serif; font-size: 18px; font-weight: 600; margin-bottom: 8px;">Next steps</div>
+      Pick one screen to prototype in code →<br>
+      Wire up Supabase + Claude API →<br>
+      Seed 10 preset templates →<br>
+      Test the full loop on yourself
+    </div>
+    <div style="text-align: right;">
+      Sonic Sticker · Working Doc v0.1<br>
+      Updated April 2026<br>
+      For Guru's review
+    </div>
+  </footer>
+
+</div>
+
+<style>
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+</style>
+
+</body>
+</html>
