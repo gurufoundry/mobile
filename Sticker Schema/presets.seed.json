@@ -748,5 +748,452 @@
       "palette": ["ink", "paper", "acid", "coral"],
       "tags": ["encouragement", "audio", "bold", "modern"]
     }
+  },
+
+  {
+    "id": "preset-bl-001",
+    "title": "love, always",
+    "category": "mothers-day",
+    "is_active": true,
+    "sort_order": 13,
+    "design_json": {
+      "version": "1.1",
+      "id": null,
+      "title": "love, always",
+      "shape": "rounded-square",
+      "size": { "width": 1000, "height": 1000 },
+      "background": {
+        "type": "watercolor",
+        "base": "paper",
+        "washes": [
+          { "color": "coral",   "cx": 0.24, "cy": 0.22, "r": 0.62, "opacity": 0.26 },
+          { "color": "sky",     "cx": 0.76, "cy": 0.74, "r": 0.50, "opacity": 0.18 },
+          { "color": "paper-2", "cx": 0.14, "cy": 0.80, "r": 0.42, "opacity": 0.55 }
+        ],
+        "blur": 90
+      },
+      "border": { "style": "solid", "color": "ink", "width": 4 },
+      "elements": [
+        {
+          "type": "illustration",
+          "id": "el-sprig",
+          "motif": "sprig",
+          "color": "ink",
+          "x": 828,
+          "y": 748,
+          "width": 128,
+          "height": 220,
+          "rotation": 12,
+          "stroke_width": 3,
+          "opacity": 0.50
+        },
+        {
+          "type": "text",
+          "id": "el-1",
+          "content": "love,",
+          "font": "fraunces",
+          "weight": 600,
+          "italic": true,
+          "size": 190,
+          "color": "ink",
+          "x": 378,
+          "y": 400,
+          "anchor": "center",
+          "rotation": -2,
+          "tracking": -20,
+          "transform": "lowercase"
+        },
+        {
+          "type": "text",
+          "id": "el-2",
+          "content": "always.",
+          "font": "fraunces",
+          "weight": 400,
+          "italic": true,
+          "size": 124,
+          "color": "plum",
+          "x": 358,
+          "y": 574,
+          "anchor": "center",
+          "rotation": 0,
+          "tracking": -10,
+          "transform": "lowercase"
+        }
+      ],
+      "palette": ["paper", "ink", "coral", "plum"],
+      "tags": ["mothers-day", "love", "watercolor", "botanical", "soft"]
+    }
+  },
+
+  {
+    "id": "preset-bl-002",
+    "title": "mama bloom",
+    "category": "mothers-day",
+    "is_active": true,
+    "sort_order": 14,
+    "design_json": {
+      "version": "1.1",
+      "id": null,
+      "title": "mama bloom",
+      "shape": "circle",
+      "size": { "width": 1000, "height": 1000 },
+      "background": {
+        "type": "watercolor",
+        "base": "paper",
+        "washes": [
+          { "color": "coral",   "cx": 0.50, "cy": 0.20, "r": 0.58, "opacity": 0.28 },
+          { "color": "paper-2", "cx": 0.48, "cy": 0.72, "r": 0.55, "opacity": 0.58 },
+          { "color": "sky",     "cx": 0.82, "cy": 0.18, "r": 0.35, "opacity": 0.16 }
+        ],
+        "blur": 95
+      },
+      "border": null,
+      "elements": [
+        {
+          "type": "illustration",
+          "id": "el-bloom",
+          "motif": "bloom",
+          "color": "ink",
+          "x": 500,
+          "y": 752,
+          "width": 190,
+          "height": 190,
+          "rotation": 0,
+          "stroke_width": 3,
+          "opacity": 0.52
+        },
+        {
+          "type": "text",
+          "id": "el-1",
+          "content": "mama",
+          "font": "fraunces",
+          "weight": 600,
+          "italic": true,
+          "size": 158,
+          "color": "ink",
+          "x": 500,
+          "y": 335,
+          "anchor": "center",
+          "rotation": 0,
+          "tracking": -15,
+          "transform": "lowercase"
+        },
+        {
+          "type": "text",
+          "id": "el-2",
+          "content": "bloom.",
+          "font": "fraunces",
+          "weight": 800,
+          "italic": true,
+          "size": 128,
+          "color": "plum",
+          "x": 500,
+          "y": 495,
+          "anchor": "center",
+          "rotation": 0,
+          "tracking": -12,
+          "transform": "lowercase"
+        }
+      ],
+      "palette": ["paper", "ink", "coral", "plum"],
+      "tags": ["mothers-day", "floral", "watercolor", "botanical", "soft"]
+    }
+  },
+
+  {
+    "id": "preset-bl-003",
+    "title": "the first hello",
+    "category": "mothers-day",
+    "is_active": true,
+    "sort_order": 15,
+    "design_json": {
+      "version": "1.1",
+      "id": null,
+      "title": "the first hello",
+      "shape": "rounded-square",
+      "size": { "width": 1000, "height": 1000 },
+      "background": {
+        "type": "watercolor",
+        "base": "paper",
+        "washes": [
+          { "color": "sky",     "cx": 0.20, "cy": 0.40, "r": 0.58, "opacity": 0.20 },
+          { "color": "paper-2", "cx": 0.55, "cy": 0.76, "r": 0.52, "opacity": 0.54 },
+          { "color": "coral",   "cx": 0.72, "cy": 0.22, "r": 0.36, "opacity": 0.18 }
+        ],
+        "blur": 85
+      },
+      "border": { "style": "solid", "color": "ink", "width": 4 },
+      "elements": [
+        {
+          "type": "illustration",
+          "id": "el-profile",
+          "motif": "profile",
+          "color": "ink",
+          "x": 724,
+          "y": 494,
+          "width": 196,
+          "height": 300,
+          "rotation": 0,
+          "stroke_width": 3,
+          "opacity": 0.58
+        },
+        {
+          "type": "text",
+          "id": "el-1",
+          "content": "the first",
+          "font": "fraunces",
+          "weight": 400,
+          "italic": true,
+          "size": 90,
+          "color": "ink",
+          "x": 310,
+          "y": 354,
+          "anchor": "center",
+          "rotation": 0,
+          "tracking": 8,
+          "transform": "lowercase"
+        },
+        {
+          "type": "text",
+          "id": "el-2",
+          "content": "hello.",
+          "font": "fraunces",
+          "weight": 800,
+          "italic": true,
+          "size": 184,
+          "color": "ink",
+          "x": 290,
+          "y": 558,
+          "anchor": "center",
+          "rotation": 0,
+          "tracking": -18,
+          "transform": "lowercase"
+        }
+      ],
+      "palette": ["paper", "ink", "sky", "plum"],
+      "tags": ["mothers-day", "tender", "watercolor", "line-art", "soft"]
+    }
+  },
+
+  {
+    "id": "preset-bl-004",
+    "title": "for you, mom",
+    "category": "mothers-day",
+    "is_active": true,
+    "sort_order": 16,
+    "design_json": {
+      "version": "1.1",
+      "id": null,
+      "title": "for you, mom",
+      "shape": "circle",
+      "size": { "width": 1000, "height": 1000 },
+      "background": {
+        "type": "watercolor",
+        "base": "paper",
+        "washes": [
+          { "color": "coral",   "cx": 0.22, "cy": 0.24, "r": 0.64, "opacity": 0.28 },
+          { "color": "sky",     "cx": 0.78, "cy": 0.72, "r": 0.48, "opacity": 0.18 },
+          { "color": "paper-2", "cx": 0.50, "cy": 0.88, "r": 0.44, "opacity": 0.50 }
+        ],
+        "blur": 92
+      },
+      "border": null,
+      "elements": [
+        {
+          "type": "illustration",
+          "id": "el-branch",
+          "motif": "branch",
+          "color": "ink",
+          "x": 500,
+          "y": 800,
+          "width": 620,
+          "height": 100,
+          "rotation": 0,
+          "stroke_width": 3,
+          "opacity": 0.48
+        },
+        {
+          "type": "text",
+          "id": "el-1",
+          "content": "for you,",
+          "font": "fraunces",
+          "weight": 600,
+          "italic": true,
+          "size": 140,
+          "color": "ink",
+          "x": 500,
+          "y": 356,
+          "anchor": "center",
+          "rotation": 0,
+          "tracking": -12,
+          "transform": "lowercase"
+        },
+        {
+          "type": "text",
+          "id": "el-2",
+          "content": "mom.",
+          "font": "fraunces",
+          "weight": 800,
+          "italic": true,
+          "size": 200,
+          "color": "ink",
+          "x": 500,
+          "y": 550,
+          "anchor": "center",
+          "rotation": 0,
+          "tracking": -20,
+          "transform": "lowercase"
+        }
+      ],
+      "palette": ["paper", "ink", "coral", "sky"],
+      "tags": ["mothers-day", "gift", "watercolor", "botanical", "warm"]
+    }
+  },
+
+  {
+    "id": "preset-bl-005",
+    "title": "softest landing",
+    "category": "mothers-day",
+    "is_active": true,
+    "sort_order": 17,
+    "design_json": {
+      "version": "1.1",
+      "id": null,
+      "title": "softest landing",
+      "shape": "blob",
+      "size": { "width": 1000, "height": 1000 },
+      "background": {
+        "type": "watercolor",
+        "base": "paper",
+        "washes": [
+          { "color": "paper-2", "cx": 0.48, "cy": 0.46, "r": 0.72, "opacity": 0.62 },
+          { "color": "coral",   "cx": 0.78, "cy": 0.80, "r": 0.42, "opacity": 0.22 },
+          { "color": "sky",     "cx": 0.14, "cy": 0.18, "r": 0.32, "opacity": 0.14 }
+        ],
+        "blur": 88
+      },
+      "border": null,
+      "elements": [
+        {
+          "type": "illustration",
+          "id": "el-leafcluster",
+          "motif": "leaf-cluster",
+          "color": "ink",
+          "x": 215,
+          "y": 268,
+          "width": 148,
+          "height": 210,
+          "rotation": -8,
+          "stroke_width": 3,
+          "opacity": 0.52
+        },
+        {
+          "type": "illustration",
+          "id": "el-bud",
+          "motif": "bud",
+          "color": "ink",
+          "x": 820,
+          "y": 740,
+          "width": 70,
+          "height": 120,
+          "rotation": 14,
+          "stroke_width": 2,
+          "opacity": 0.40
+        },
+        {
+          "type": "text",
+          "id": "el-1",
+          "content": "softest",
+          "font": "fraunces",
+          "weight": 600,
+          "italic": true,
+          "size": 148,
+          "color": "ink",
+          "x": 592,
+          "y": 418,
+          "anchor": "center",
+          "rotation": 0,
+          "tracking": -14,
+          "transform": "lowercase"
+        },
+        {
+          "type": "text",
+          "id": "el-2",
+          "content": "landing.",
+          "font": "fraunces",
+          "weight": 400,
+          "italic": true,
+          "size": 108,
+          "color": "plum",
+          "x": 578,
+          "y": 570,
+          "anchor": "center",
+          "rotation": 0,
+          "tracking": -8,
+          "transform": "lowercase"
+        }
+      ],
+      "palette": ["paper", "paper-2", "ink", "plum"],
+      "tags": ["mothers-day", "tender", "watercolor", "botanical", "calm"]
+    }
+  },
+
+  {
+    "id": "preset-bl-006",
+    "title": "held.",
+    "category": "mothers-day",
+    "is_active": true,
+    "sort_order": 18,
+    "design_json": {
+      "version": "1.1",
+      "id": null,
+      "title": "held.",
+      "shape": "circle",
+      "size": { "width": 1000, "height": 1000 },
+      "background": {
+        "type": "watercolor",
+        "base": "paper",
+        "washes": [
+          { "color": "coral",   "cx": 0.72, "cy": 0.22, "r": 0.56, "opacity": 0.26 },
+          { "color": "sky",     "cx": 0.22, "cy": 0.58, "r": 0.48, "opacity": 0.18 },
+          { "color": "paper-2", "cx": 0.46, "cy": 0.82, "r": 0.44, "opacity": 0.52 }
+        ],
+        "blur": 88
+      },
+      "border": null,
+      "elements": [
+        {
+          "type": "illustration",
+          "id": "el-heartline",
+          "motif": "heart-line",
+          "color": "ink",
+          "x": 500,
+          "y": 742,
+          "width": 148,
+          "height": 134,
+          "rotation": 0,
+          "stroke_width": 3,
+          "opacity": 0.55
+        },
+        {
+          "type": "text",
+          "id": "el-1",
+          "content": "held.",
+          "font": "fraunces",
+          "weight": 800,
+          "italic": true,
+          "size": 258,
+          "color": "ink",
+          "x": 500,
+          "y": 462,
+          "anchor": "center",
+          "rotation": 0,
+          "tracking": -24,
+          "transform": "lowercase"
+        }
+      ],
+      "palette": ["paper", "ink", "coral", "sky"],
+      "tags": ["mothers-day", "love", "watercolor", "line-art", "minimal"]
+    }
   }
 ]
