@@ -4,7 +4,7 @@ import { ArrowLeft, Sparkles } from 'lucide-react'
 import { supabase } from '../lib/supabase'
 import StickerRenderer from '../components/StickerRenderer'
 import { Preset } from '../types/sticker'
-import { PALETTE } from '../types/sticker'
+import { resolveColor } from '../types/sticker'
 
 export default function PresetDetail() {
   const { id } = useParams<{ id: string }>()
@@ -45,6 +45,7 @@ export default function PresetDetail() {
   }
 
   const palette = preset.design_json.palette
+  const packPalette = preset.design_json.pack_palette
 
   return (
     <div className="min-h-screen bg-paper flex flex-col">
@@ -78,7 +79,7 @@ export default function PresetDetail() {
             <div
               key={token}
               className="w-6 h-6 rounded-full border border-ink/10"
-              style={{ backgroundColor: PALETTE[token] }}
+              style={{ backgroundColor: resolveColor(token, packPalette) }}
               title={token}
             />
           ))}

@@ -11,22 +11,35 @@ export const PALETTE: Record<PaletteToken, string> = {
   'sky':     '#6FA8FF',
 }
 
+// Pack-scoped palette keys (overridden per-design via pack_palette)
+export type PackPaletteKey = 'primary' | 'secondary' | 'accent_a' | 'accent_b'
+
+// Union of all possible color tokens
+export type AnyColorToken = PaletteToken | PackPaletteKey
+
+// Resolves a token to a hex color, checking pack_palette first
+export function resolveColor(token: string, packPalette?: Record<string, string>): string {
+  if (packPalette && token in packPalette) return packPalette[token]
+  if (token in PALETTE) return PALETTE[token as PaletteToken]
+  return PALETTE['ink']
+}
+
 export type StickerShape =
   | 'circle' | 'rounded-square' | 'square'
   | 'hexagon' | 'diamond' | 'blob' | 'badge'
 
 export interface Background {
   type: 'solid' | 'gradient' | 'noise'
-  color?: PaletteToken
-  from?: PaletteToken
-  to?: PaletteToken
+  color?: AnyColorToken
+  from?: AnyColorToken
+  to?: AnyColorToken
   direction?: 'diagonal' | 'vertical' | 'horizontal' | 'radial'
   intensity?: number
 }
 
 export interface Border {
   style: 'solid' | 'dashed' | 'double' | 'none'
-  color: PaletteToken
+  color: AnyColorToken
   width: number
 }
 
@@ -38,7 +51,7 @@ export interface TextElement {
   weight: 400 | 600 | 700 | 800
   italic: boolean
   size: number
-  color: PaletteToken
+  color: AnyColorToken
   x: number
   y: number
   anchor: 'center' | 'left' | 'right'
@@ -55,8 +68,8 @@ export interface ShapeElement {
   y: number
   width: number
   height: number
-  color: PaletteToken
-  stroke: PaletteToken | null
+  color: AnyColorToken
+  stroke: AnyColorToken | null
   strokeWidth: number
   rotation: number
   opacity: number
@@ -66,7 +79,7 @@ export interface DecorationElement {
   type: 'decoration'
   id: string
   motif: 'confetti' | 'sparkles' | 'stars' | 'dots' | 'stripes' | 'grain' | 'wave'
-  color: PaletteToken
+  color: AnyColorToken
   density: number
   scale: number
   rotation: number
@@ -83,19 +96,35 @@ export interface DesignJson {
   background: Background
   border: Border | null
   elements: StickerElement[]
-  palette: PaletteToken[]
+  palette: string[]
   tags: string[]
+  pack_palette?: Record<string, string>
 }
 
 // DB row types
+export interface Pack {
+  id: string
+  title: string
+  tagline: string | null
+  is_seasonal: boolean
+  season_start: string | null
+  season_end: string | null
+  sort_order: number
+  is_active: boolean
+  created_at: string
+}
+
 export interface Preset {
   id: string
   title: string
-  category: 'greeting' | 'event' | 'memory' | 'gift' | 'encouragement'
+  category: 'greeting' | 'event' | 'memory' | 'gift' | 'encouragement' | 'kids' | 'seasonal'
   design_json: DesignJson
   preview_png_url: string | null
   is_active: boolean
   sort_order: number
+  pack_id: string | null
+  season_start: string | null
+  season_end: string | null
 }
 
 export interface Sticker {

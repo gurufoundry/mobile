@@ -1,13 +1,18 @@
 import {
-  DesignJson, PaletteToken, PALETTE,
+  DesignJson, PALETTE, PaletteToken,
   TextElement, ShapeElement, DecorationElement,
 } from '../types/sticker'
 
 const CANVAS = 1000
 
-function hex(token: PaletteToken | null | undefined): string {
-  if (!token || !(token in PALETTE)) return PALETTE['ink']
-  return PALETTE[token as PaletteToken]
+type HexFn = (token: string) => string
+
+function makeHex(packPalette?: Record<string, string>): HexFn {
+  return (token: string): string => {
+    if (packPalette && token in packPalette) return packPalette[token]
+    if (token in PALETTE) return PALETTE[token as PaletteToken]
+    return PALETTE['ink']
+  }
 }
 
 function fontFamily(font: TextElement['font']): string {
@@ -62,7 +67,7 @@ function ShapeClip({ shape, id }: { shape: DesignJson['shape']; id: string }) {
 }
 
 // The same outline as a visible stroke element
-function ShapeOutline({ shape, border }: { shape: DesignJson['shape']; border: DesignJson['border'] }) {
+function ShapeOutline({ shape, border, hex }: { shape: DesignJson['shape']; border: DesignJson['border']; hex: HexFn }) {
   if (!border || border.style === 'none') return null
   const C = CANVAS
   const R = 80
@@ -93,7 +98,7 @@ function ShapeOutline({ shape, border }: { shape: DesignJson['shape']; border: D
   }
 }
 
-function Background({ bg, clipId }: { bg: DesignJson['background']; clipId: string }) {
+function Background({ bg, clipId, hex }: { bg: DesignJson['background']; clipId: string; hex: HexFn }) {
   const C = CANVAS
   if (bg.type === 'gradient' && bg.from && bg.to) {
     const gradId = `${clipId}-grad`
@@ -124,7 +129,7 @@ function Background({ bg, clipId }: { bg: DesignJson['background']; clipId: stri
       </>
     )
   }
-  return <rect x={0} y={0} width={C} height={C} fill={hex(bg.color)} />
+  return <rect x={0} y={0} width={C} height={C} fill={hex(bg.color ?? 'paper')} />
 }
 
 // Star polygon helper
@@ -136,7 +141,7 @@ function starPoints(cx: number, cy: number, r: number, ir: number, points = 5): 
   }).join(' ')
 }
 
-function RenderShape({ el }: { el: ShapeElement }) {
+function RenderShape({ el, hex }: { el: ShapeElement; hex: HexFn }) {
   const { x, y, width: w, height: h, color, stroke, strokeWidth: sw, rotation, opacity } = el
   const fill = hex(color)
   const strokeColor = stroke ? hex(stroke) : 'none'
@@ -178,7 +183,7 @@ function RenderShape({ el }: { el: ShapeElement }) {
 }
 
 // Simple decorations implemented as SVG patterns
-function RenderDecoration({ el, clipId }: { el: DecorationElement; clipId: string }) {
+function RenderDecoration({ el, clipId, hex }: { el: DecorationElement; clipId: string; hex: HexFn }) {
   const C = CANVAS
   const fill = hex(el.color)
   const patId = `pat-${el.id}-${clipId}`
@@ -258,7 +263,7 @@ function RenderDecoration({ el, clipId }: { el: DecorationElement; clipId: strin
   }
 }
 
-function RenderText({ el }: { el: TextElement }) {
+function RenderText({ el, hex }: { el: TextElement; hex: HexFn }) {
   const content = el.transform === 'uppercase'
     ? el.content.toUpperCase()
     : el.transform === 'lowercase'
@@ -296,6 +301,7 @@ interface Props {
 export default function StickerRenderer({ design, size = 300, className }: Props) {
   const C = CANVAS
   const clipId = `clip-${design.id ?? design.title.replace(/\s+/g, '-')}`
+  const hex = makeHex(design.pack_palette)
 
   return (
     <svg
@@ -311,17 +317,17 @@ export default function StickerRenderer({ design, size = 300, className }: Props
 
       {/* All content clipped to sticker shape */}
       <g clipPath={`url(#${clipId})`}>
-        <Background bg={design.background} clipId={clipId} />
+        <Background bg={design.background} clipId={clipId} hex={hex} />
         {design.elements.map(el => {
-          if (el.type === 'decoration') return <RenderDecoration key={el.id} el={el} clipId={clipId} />
-          if (el.type === 'shape') return <RenderShape key={el.id} el={el} />
-          if (el.type === 'text') return <RenderText key={el.id} el={el} />
+          if (el.type === 'decoration') return <RenderDecoration key={el.id} el={el} clipId={clipId} hex={hex} />
+          if (el.type === 'shape') return <RenderShape key={el.id} el={el} hex={hex} />
+          if (el.type === 'text') return <RenderText key={el.id} el={el} hex={hex} />
           return null
         })}
       </g>
 
       {/* Border drawn on top, outside clip */}
-      <ShapeOutline shape={design.shape} border={design.border} />
+      <ShapeOutline shape={design.shape} border={design.border} hex={hex} />
     </svg>
   )
 }
