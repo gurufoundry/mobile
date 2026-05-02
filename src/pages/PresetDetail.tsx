@@ -1,16 +1,19 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { ArrowLeft, Sparkles } from 'lucide-react'
+import { ArrowLeft, ShoppingBag, BookMarked, Sparkles } from 'lucide-react'
 import { supabase } from '../lib/supabase'
 import StickerRenderer from '../components/StickerRenderer'
 import { Preset } from '../types/sticker'
 import { resolveColor } from '../types/sticker'
+import { useAuth } from '../contexts/AuthContext'
 
 export default function PresetDetail() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
+  const { user } = useAuth()
   const [preset, setPreset] = useState<Preset | null>(null)
   const [loading, setLoading] = useState(true)
+  const [saving, setSaving] = useState(false)
 
   useEffect(() => {
     if (!id) return
@@ -24,6 +27,24 @@ export default function PresetDetail() {
         setLoading(false)
       })
   }, [id])
+
+  const saveToLibrary = async () => {
+    if (!user) { navigate('/auth', { state: { from: `/preset/${id}` } }); return }
+    if (!preset) return
+    setSaving(true)
+    const { data, error } = await supabase
+      .from('stickers')
+      .insert({
+        user_id: user.id,
+        title: preset.title,
+        design_json: preset.design_json,
+        source_preset_id: preset.id,
+      })
+      .select('id')
+      .single()
+    setSaving(false)
+    if (!error && data) navigate(`/sticker/${data.id}`)
+  }
 
   if (loading) {
     return (
@@ -98,18 +119,38 @@ export default function PresetDetail() {
         </div>
       </div>
 
-      {/* CTA */}
-      <div className="mt-auto px-6 pb-8 pt-8">
+      {/* CTAs */}
+      <div className="mt-auto px-6 pb-8 pt-8 flex flex-col gap-3">
         <button
-          onClick={() => navigate('/create')}
+          onClick={() => navigate(`/checkout/${preset.id}`)}
           className="w-full bg-coral text-paper font-semibold py-4 rounded-2xl flex items-center justify-center gap-2 text-sm hover:opacity-90 transition active:scale-95"
         >
-          <Sparkles size={16} />
-          Create yours with AI
+          <ShoppingBag size={16} />
+          Order this sticker
         </button>
-        <p className="text-center font-mono text-[11px] text-ink/30 mt-3 tracking-wide">
-          Answer 3–5 questions · Takes 2 minutes
-        </p>
+
+        <button
+          onClick={saveToLibrary}
+          disabled={saving}
+          className="w-full border border-ink/15 text-ink font-semibold py-4 rounded-2xl flex items-center justify-center gap-2 text-sm hover:bg-paper-2 transition active:scale-95 disabled:opacity-50"
+        >
+          {saving
+            ? <div className="w-4 h-4 rounded-full border-2 border-ink border-t-transparent animate-spin" />
+            : <BookMarked size={16} />
+          }
+          {saving ? 'Saving…' : 'Save to library'}
+        </button>
+
+        <button
+          onClick={() => navigate('/create')}
+          className="w-full flex items-center justify-center gap-2 text-ink/30 text-sm py-2"
+        >
+          <Sparkles size={14} />
+          <span>Create yours with AI</span>
+          <span className="font-mono text-[10px] bg-paper-2 px-2 py-0.5 rounded-full tracking-wide">
+            coming soon
+          </span>
+        </button>
       </div>
     </div>
   )

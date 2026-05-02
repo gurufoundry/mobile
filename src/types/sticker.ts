@@ -102,6 +102,22 @@ export interface DesignJson {
   pack_palette?: Record<string, string>
 }
 
+export interface Order {
+  id: string
+  preset_id: string | null
+  user_id: string | null
+  customer_name: string
+  customer_email: string
+  shipping_address: string
+  quantity: number
+  magnet_size: '2inch' | '3inch' | '4inch'
+  notes: string | null
+  unit_price_cents: number
+  total_cents: number
+  status: 'pending_payment' | 'paid' | 'in_production' | 'shipped' | 'delivered' | 'cancelled'
+  created_at: string
+}
+
 // DB row types
 export interface Pack {
   id: string
@@ -126,6 +142,7 @@ export interface Preset {
   pack_id: string | null
   season_start: string | null
   season_end: string | null
+  price_cents: number
 }
 
 export interface Sticker {

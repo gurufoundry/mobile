@@ -5,6 +5,7 @@ import AuthGuard from './components/AuthGuard'
 import Landing from './pages/Landing'
 import Auth from './pages/Auth'
 import Create from './pages/Create'
+import Checkout from './pages/Checkout'
 import StickerDetail from './pages/StickerDetail'
 import StickerAudio from './pages/StickerAudio'
 import Library from './pages/Library'
@@ -19,6 +20,7 @@ export default function App() {
           {/* Public routes — no nav shell */}
           <Route path="/play/:id" element={<Play />} />
           <Route path="/auth" element={<Auth />} />
+          <Route path="/checkout/:presetId" element={<Checkout />} />
 
           {/* App routes — with bottom-tab nav */}
           <Route element={<Layout />}>
