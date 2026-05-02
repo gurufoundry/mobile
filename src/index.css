@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink:    #0E0E10;
+  --paper:  #F4F1EA;
+  --paper-2:#EAE5D9;
+  --coral:  #FF5A3D;
+  --acid:   #D4FF3D;
+  --plum:   #2B1B4A;
+  --sky:    #6FA8FF;
+}
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+  }
+}
