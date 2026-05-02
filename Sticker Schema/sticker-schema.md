@@ -64,12 +64,41 @@ Always `{ "width": 1000, "height": 1000 }` for MVP. Reserved for non-square stic
 {
   "type": "solid" | "gradient" | "noise",
   "color": "<palette-token>",         // for solid
-  "from": "<palette-token>",          // for gradient
-  "to": "<palette-token>",            // for gradient
+  "from": "<palette-token>",          // for gradient — start color (0%)
+  "mid": "<palette-token>",           // for gradient — optional middle stop (50%)
+  "to": "<palette-token>",            // for gradient — end color (100%)
   "direction": "diagonal" | "vertical" | "horizontal" | "radial",  // for gradient
   "intensity": 0.0–1.0                // for noise overlay strength
 }
 ```
+
+`mid` is optional. When present it inserts a third color stop at the 50% position of any linear or radial gradient. Omitting it keeps the original two-stop behaviour.
+
+#### Glossy highlight variant
+
+A specific use of the three-stop radial gradient that produces a puffy, candy-like surface. Set `from` to `"paper"` so the centre reads as a near-white highlight, then let `mid` carry the main hue and `to` deepen the edges.
+
+| Field | Recommended value | Effect |
+|---|---|---|
+| `direction` | `"radial"` | circular gradient from centre outward |
+| `from` | `"paper"` | near-white highlight at the centre |
+| `mid` | dominant candy color | the main hue at the ~50% radius |
+| `to` | deeper accent | edge darkening, adds roundness and dimension |
+
+Example — Bonbon Drop *hi!*:
+
+```json
+{
+  "type": "gradient",
+  "from": "paper",
+  "mid": "primary",
+  "to": "accent_b",
+  "direction": "radial"
+}
+```
+
+Renders as: off-white centre → bubblegum pink → lavender edge.
+This pattern works for any `pack_palette` that defines `primary` and `accent_b`; swap those tokens for the global palette equivalents (`coral`, `plum`, etc.) to use it on non-pack stickers.
 
 ### `border` *(object | null)*
 
