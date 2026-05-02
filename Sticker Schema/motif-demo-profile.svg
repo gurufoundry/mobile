@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <!-- Paper background -->
+  <rect width="400" height="400" fill="#F4F1EA"/>
+  <rect width="400" height="400" fill="none" stroke="#C4B89A" stroke-width="1.5"/>
+
+  <!-- motif: profile — single continuous line of a left-facing face -->
+  <!--
+    The line starts at the crown/forehead, travels down the face contour:
+    forehead → nose bridge → nose tip → philtrum → upper lip → lower lip → chin → jawline
+    plus a detached short neck line below.
+    One path = one continuous pen stroke.
+  -->
+  <g stroke="#8B6F47" stroke-linecap="round" stroke-linejoin="round" fill="none">
+
+    <!-- Main face contour: single continuous line -->
+    <path d="M 218 70
+             C 230 82 244 104 244 128
+             C 244 144 240 154 250 170
+             C 256 182 266 192 262 206
+             C 258 218 246 224 246 236
+             C 246 248 256 258 252 272
+             C 248 286 234 296 218 298
+             C 202 300 186 294 178 284"
+          stroke-width="5"/>
+
+    <!-- Short secondary curve: lower jaw turning back under chin -->
+    <path d="M 178 284 C 173 278 172 268 176 262 C 180 256 188 257 190 264"
+          stroke-width="4.5"/>
+
+    <!-- Neck — separate short stroke below chin -->
+    <path d="M 206 300 C 204 316 202 330 204 346" stroke-width="4"/>
+
+    <!-- Collar / shoulder suggestion — two short curves -->
+    <path d="M 204 346 C 192 350 175 354 160 360" stroke-width="3.5"/>
+    <path d="M 204 346 C 216 350 232 354 246 358" stroke-width="3.5"/>
+
+    <!-- Ear — small detached curve on the right side of the face at mid-head height -->
+    <path d="M 244 148 C 254 152 260 164 256 176 C 253 184 248 186 244 184"
+          stroke-width="3"/>
+
+    <!-- Eye — single gentle arc -->
+    <path d="M 236 124 C 240 120 248 120 252 126" stroke-width="3"/>
+
+    <!-- Eyebrow — short slightly curved stroke above eye -->
+    <path d="M 232 112 C 238 108 248 108 254 112" stroke-width="2.5"/>
+
+  </g>
+
+  <!-- Label -->
+  <text x="200" y="386" font-family="Georgia, serif" font-size="13" font-style="italic"
+        fill="#8B6F47" text-anchor="middle" letter-spacing="1">profile</text>
+  <text x="200" y="398" font-family="Georgia, serif" font-size="10"
+        fill="#C4B89A" text-anchor="middle" letter-spacing="2">LINE-ART · ILLUSTRATION</text>
+</svg>

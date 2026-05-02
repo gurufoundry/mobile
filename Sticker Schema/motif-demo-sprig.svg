@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <!-- Paper background (#F4F1EA) with a soft border -->
+  <rect width="400" height="400" fill="#F4F1EA"/>
+  <rect width="400" height="400" fill="none" stroke="#C4B89A" stroke-width="1.5"/>
+
+  <!-- Subtle grain texture overlay: sparse tiny dots -->
+  <filter id="grain">
+    <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="4" stitchTiles="stitch"/>
+    <feColorMatrix type="saturate" values="0"/>
+    <feBlend in="SourceGraphic" mode="multiply" result="blend"/>
+    <feComposite in="blend" in2="SourceGraphic" operator="in"/>
+  </filter>
+  <rect width="400" height="400" fill="#8B6F47" opacity="0.04" filter="url(#grain)"/>
+
+  <!-- motif: sprig — centrally placed, slightly lower to balance label -->
+  <g stroke="#8B6F47" stroke-linecap="round" stroke-linejoin="round" fill="none">
+
+    <!-- Main stem: gently curves up from bottom to tip -->
+    <path d="M 200 318
+             C 199 292 201 266 200 234
+             C 199 202 201 172 200 136
+             C 199 116 201 98 200 82"
+          stroke-width="5"/>
+
+    <!-- Lower leaf pair — branch off the stem at y≈248 -->
+    <path d="M 200 248 C 186 241 168 232 152 222" stroke-width="4"/>
+    <path d="M 200 248 C 214 241 232 232 248 222" stroke-width="4"/>
+
+    <!-- Middle leaf pair — at y≈180 -->
+    <path d="M 200 180 C 186 172 168 164 152 154" stroke-width="3.5"/>
+    <path d="M 200 180 C 214 172 232 164 248 154" stroke-width="3.5"/>
+
+    <!-- Upper tip leaves — at y≈126, shorter -->
+    <path d="M 200 126 C 191 118 180 109 170 101" stroke-width="3"/>
+    <path d="M 200 126 C 209 118 220 109 230 101" stroke-width="3"/>
+
+  </g>
+
+  <!-- Label -->
+  <text x="200" y="360" font-family="Georgia, serif" font-size="13" font-style="italic"
+        fill="#8B6F47" text-anchor="middle" letter-spacing="1">sprig</text>
+  <text x="200" y="378" font-family="Georgia, serif" font-size="10"
+        fill="#C4B89A" text-anchor="middle" letter-spacing="2">BOTANICAL · ILLUSTRATION</text>
+</svg>

@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <!-- Paper background -->
+  <rect width="400" height="400" fill="#F4F1EA"/>
+  <rect width="400" height="400" fill="none" stroke="#C4B89A" stroke-width="1.5"/>
+
+  <!-- motif: bloom — six-petal open flower, centered at 200,195 -->
+  <!-- Each petal: a lens-shaped double-curve from center to tip -->
+  <!-- Petals are identical and rotated with SVG transform -->
+  <g transform="translate(200,195)" stroke="#8B6F47" stroke-linecap="round" stroke-linejoin="round" fill="none">
+
+    <!-- Petal template at 0° (pointing up): two cubic curves from origin to tip (0,-68) and back -->
+    <!-- Left edge: control points lean left; right edge: lean right -->
+    <g transform="rotate(0)">
+      <path d="M 0 0 C -11 -24 -13 -46 0 -68 C 13 -46 11 -24 0 0" stroke-width="3.5"/>
+    </g>
+    <g transform="rotate(60)">
+      <path d="M 0 0 C -11 -24 -13 -46 0 -68 C 13 -46 11 -24 0 0" stroke-width="3.5"/>
+    </g>
+    <g transform="rotate(120)">
+      <path d="M 0 0 C -11 -24 -13 -46 0 -68 C 13 -46 11 -24 0 0" stroke-width="3.5"/>
+    </g>
+    <g transform="rotate(180)">
+      <path d="M 0 0 C -11 -24 -13 -46 0 -68 C 13 -46 11 -24 0 0" stroke-width="3.5"/>
+    </g>
+    <g transform="rotate(240)">
+      <path d="M 0 0 C -11 -24 -13 -46 0 -68 C 13 -46 11 -24 0 0" stroke-width="3.5"/>
+    </g>
+    <g transform="rotate(300)">
+      <path d="M 0 0 C -11 -24 -13 -46 0 -68 C 13 -46 11 -24 0 0" stroke-width="3.5"/>
+    </g>
+
+    <!-- Center circle -->
+    <circle cx="0" cy="0" r="10" stroke-width="3"/>
+
+    <!-- Short stem descending from bloom -->
+    <path d="M 0 10 C 0 30 -2 50 0 70" stroke-width="4"/>
+
+    <!-- Two small side leaves on the stem -->
+    <path d="M 0 40 C -10 36 -22 30 -30 24" stroke-width="3"/>
+    <path d="M 0 40 C 10 36 22 30 30 24" stroke-width="3"/>
+  </g>
+
+  <!-- Label -->
+  <text x="200" y="358" font-family="Georgia, serif" font-size="13" font-style="italic"
+        fill="#8B6F47" text-anchor="middle" letter-spacing="1">bloom</text>
+  <text x="200" y="376" font-family="Georgia, serif" font-size="10"
+        fill="#C4B89A" text-anchor="middle" letter-spacing="2">BOTANICAL · ILLUSTRATION</text>
+</svg>

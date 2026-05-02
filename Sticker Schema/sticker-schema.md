@@ -35,7 +35,9 @@
 ## Field reference
 
 ### `version` *(string, required)*
-Schema version. Currently `"1.0"`. Bump when making breaking changes.
+Schema version. Currently `"1.1"`. Bump when making breaking changes.
+(`1.1` adds the `illustration` element type and is backwards-compatible — renderers that
+don't recognize an element type should silently skip it rather than crash.)
 
 ### `id` *(string | null)*
 UUID once saved to DB. `null` when freshly generated and not yet persisted.
@@ -141,6 +143,54 @@ The visual content. Order matters — earlier items render below later items. Ea
 
 Decorations render as patterns inside the sticker boundary. Useful for adding visual texture without the agent needing to position individual elements.
 
+#### Illustration element *(hand-drawn SVG motif library)*
+
+```json
+{
+  "type": "illustration",
+  "id": "el-4",
+  "motif": "sprig" | "single-stem" | "leaf-cluster" | "branch" | "bud" | "bloom"
+        | "profile" | "embrace" | "hand" | "heart-line",
+  "color": "<palette-token>",
+  "x": 0–1000,           // center x of bounding box
+  "y": 0–1000,           // center y of bounding box
+  "width": 10–600,       // bounding box width in canvas units
+  "height": 10–600,      // bounding box height in canvas units
+  "rotation": 0–360,     // degrees, clockwise
+  "stroke_width": 1–8,   // line weight; scales relative to rendered size
+  "opacity": 0.0–1.0     // layering/wash effect
+}
+```
+
+All illustration paths use `stroke-linecap: round` and `stroke-linejoin: round`. The `color`
+token resolves to the stroke color. **There is no fill.** This ensures the motifs read as
+illustration marks rather than solid shapes — consistent with the "hand-drawn ink line" aesthetic.
+
+The renderer holds the canonical path data for each motif in a normalized 0 0 100 100 unit
+space; the `width`/`height`/`x`/`y` params scale and position it on the 1000×1000 canvas.
+`stroke_width` is applied after scaling, so a value of `3` always produces the same visual
+weight regardless of the element's rendered size.
+
+##### Botanical motifs
+
+| Motif | Description |
+|-------|-------------|
+| `sprig` | Small leafy stem — a central gently-curved line with two pairs of side-branching leaves and a small tip leaf cluster |
+| `single-stem` | One tall stem with a closed teardrop bud at the tip and two small sepals |
+| `leaf-cluster` | Three overlapping elongated leaves fanning from a common base point |
+| `branch` | Gently curved main stem with small leaves alternating on either side, plus a few drooping lower shoots |
+| `bud` | A single closed flower bud — rounded teardrop petal-form held by a short stem with two small side sepals |
+| `bloom` | A single open flower — six symmetrical petals radiating from a small open center circle |
+
+##### Line-art motifs
+
+| Motif | Description |
+|-------|-------------|
+| `profile` | A single continuous line tracing a face in left-facing side profile — forehead, nose, lips, chin |
+| `embrace` | An abstract single-line sketch of two figures; bodies lean toward each other with arms implied by converging curves |
+| `hand` | A continuous line sketch of an open hand — five fingers, loosely grouped, with a rounded palm base |
+| `heart-line` | A heart drawn as one smooth, unbroken closed curve — entry and exit meet at the bottom point |
+
 ---
 
 ## Palette tokens
@@ -170,6 +220,8 @@ The `palette` array on the top-level design is a hint to the editor about which 
 5. `palette` array must contain at least 2 tokens, max 5
 6. `tags` array must contain 1–6 lowercase tokens
 7. Total file size of serialized JSON < 8KB
+8. `illustration.motif` must be one of the 10 defined values; unknown motifs render as a simple cross/placeholder rather than crashing
+9. `illustration.stroke_width` clamped to [1, 8]; renderer ignores out-of-range values rather than throwing
 
 If validation fails, the renderer should fall back to a minimal "error sticker" with the title and a question mark, rather than crashing.
 
@@ -287,10 +339,11 @@ To indicate a turn is the final design, respond with:
 
 Reserved for Phase 2+:
 - `image` element type (raster image upload)
-- `path` element type (custom SVG paths)
+- `path` element type (fully custom user-supplied SVG paths — `illustration` covers the curated motif set)
 - `animation` (animated stickers for digital use)
 - `audio_visualizer` (waveform rendered into the sticker)
 - `multi_layer_clip` (stickers within stickers)
+- `watercolor` background type and multi-stop gradient support (scheduled for schema v1.2)
 
 ---
 
