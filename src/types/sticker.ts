@@ -32,6 +32,7 @@ export interface Background {
   type: 'solid' | 'gradient' | 'noise'
   color?: AnyColorToken
   from?: AnyColorToken
+  mid?: AnyColorToken   // optional middle stop — enables watercolor-wash and candy-gloss gradients
   to?: AnyColorToken
   direction?: 'diagonal' | 'vertical' | 'horizontal' | 'radial'
   intensity?: number
@@ -78,7 +79,7 @@ export interface ShapeElement {
 export interface DecorationElement {
   type: 'decoration'
   id: string
-  motif: 'confetti' | 'sparkles' | 'stars' | 'dots' | 'stripes' | 'grain' | 'wave'
+  motif: 'confetti' | 'sparkles' | 'stars' | 'dots' | 'stripes' | 'grain' | 'wave' | 'botanical'
   color: AnyColorToken
   density: number
   scale: number

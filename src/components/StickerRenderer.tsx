@@ -110,6 +110,7 @@ function Background({ bg, clipId, hex }: { bg: DesignJson['background']; clipId:
           {isRadial ? (
             <radialGradient id={gradId} cx="50%" cy="50%" r="50%">
               <stop offset="0%" stopColor={hex(bg.from)} />
+              {bg.mid && <stop offset="50%" stopColor={hex(bg.mid)} />}
               <stop offset="100%" stopColor={hex(bg.to)} />
             </radialGradient>
           ) : (
@@ -121,6 +122,7 @@ function Background({ bg, clipId, hex }: { bg: DesignJson['background']; clipId:
               gradientUnits="objectBoundingBox"
             >
               <stop offset="0%" stopColor={hex(bg.from)} />
+              {bg.mid && <stop offset="50%" stopColor={hex(bg.mid)} />}
               <stop offset="100%" stopColor={hex(bg.to)} />
             </linearGradient>
           )}
@@ -255,6 +257,35 @@ function RenderDecoration({ el, clipId, hex }: { el: DecorationElement; clipId: 
             </pattern>
           </defs>
           <rect x={0} y={0} width={C} height={C} fill={`url(#${patId})`} opacity={opacity} />
+        </>
+      )
+    }
+    case 'botanical': {
+      // Single-line botanical sprig: wavy stem + 3 alternate leaves + small round bud
+      const tw = 100 * el.scale
+      const th = 160 * el.scale
+      const cx = tw * 0.5
+      const sw = Math.max(1.5, tw * 0.028)
+      const op = 0.12 + el.density * 0.42
+      return (
+        <>
+          <defs>
+            <pattern id={patId} x="0" y="0" width={tw} height={th} patternUnits="userSpaceOnUse" patternTransform={el.rotation ? `rotate(${el.rotation})` : undefined}>
+              <g stroke={fill} strokeWidth={sw} fill="none" strokeLinecap="round" strokeLinejoin="round">
+                {/* wavy stem bottom → top */}
+                <path d={`M${cx},${th} C${cx - tw * 0.04},${th * 0.72} ${cx + tw * 0.04},${th * 0.48} ${cx},${th * 0.22} C${cx - tw * 0.03},${th * 0.1} ${cx},${th * 0.02} ${cx},0`} />
+                {/* left leaf at ~72% */}
+                <path d={`M${cx},${th * 0.72} C${cx - tw * 0.28},${th * 0.63} ${cx - tw * 0.44},${th * 0.52} ${cx - tw * 0.4},${th * 0.43} C${cx - tw * 0.24},${th * 0.5} ${cx - tw * 0.08},${th * 0.66} ${cx},${th * 0.7}`} />
+                {/* right leaf at ~52% */}
+                <path d={`M${cx},${th * 0.52} C${cx + tw * 0.28},${th * 0.43} ${cx + tw * 0.44},${th * 0.32} ${cx + tw * 0.4},${th * 0.23} C${cx + tw * 0.24},${th * 0.3} ${cx + tw * 0.08},${th * 0.46} ${cx},${th * 0.5}`} />
+                {/* left leaf at ~30% */}
+                <path d={`M${cx},${th * 0.3} C${cx - tw * 0.22},${th * 0.22} ${cx - tw * 0.35},${th * 0.14} ${cx - tw * 0.32},${th * 0.07} C${cx - tw * 0.18},${th * 0.11} ${cx - tw * 0.06},${th * 0.24} ${cx},${th * 0.28}`} />
+                {/* small bud */}
+                <circle cx={cx} cy={th * 0.04} r={tw * 0.07} />
+              </g>
+            </pattern>
+          </defs>
+          <rect x={0} y={0} width={C} height={C} fill={`url(#${patId})`} opacity={op} />
         </>
       )
     }
